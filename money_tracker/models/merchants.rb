@@ -2,7 +2,8 @@ require_relative( '../db/sql_runner' )
 
 class Merchant
 
-  attr_accessor :id, :name
+  attr_accessor :id
+  attr_accessor :name
 
   def initialize(details)
     @id = details['id'].to_i if details['id'].to_i
