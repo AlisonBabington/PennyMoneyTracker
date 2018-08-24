@@ -3,32 +3,33 @@ require_relative('../db/sql_runner')
 class Transaction
 
   attr_reader :id
-  attr_accessor :description, :merchant_id, :tag_id, :amount
+  attr_accessor :description, :merchant_id, :tag_id, :account_id, :amount
 
   def initialize(details)
     @id = details['id'].to_i if details['id'].to_i
+    @amount = details['amount'].to_f.round(2)
     @description = details['description']
     @merchant_id = details['merchant_id'].to_i if details['merchant_id'].to_i
     @tag_id = details['tag_id'].to_i if details ['tag_id'].to_i
-    @amount = details['amount'].to_f.round(2)
+    @account_id = details['account_id'] if details ['tag_id'].to_i
   end
 
   def save()
     sql = "INSERT INTO transactions
-    (description, merchant_id, tag_id, amount)
-    VALUES ($1, $2, $3, $4)
+    (amount, description, merchant_id, tag_id, account_id)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING id "
-    values = [@description, @merchant_id, @tag_id, @amount]
+    values = [@amount, @description, @merchant_id, @tag_id, @account_id]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
 
   def update()
     sql = "UPDATE transactions
-    SET description, merchant_id, tag_id, amount) =
-    ($1, $2, $3, $4)
-    WHERE id = $5"
-    values = [@description, @merchant_id, @tag_id, @amount, @id]
+    SET (amount, description, merchant_id, tag_id, account_id) =
+    ($1, $2, $3, $4, $5)
+    WHERE id = $6"
+    values = [@amount, @description, @merchant_id, @tag_id, @account_id, @id]
     SqlRunner.run(sql, values)
   end
 
