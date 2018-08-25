@@ -15,9 +15,9 @@ CREATE TABLE merchants (
 
 CREATE TABLE accounts (
   id SERIAL8 PRIMARY KEY,
-  owner_first_name VARCHAR(255),
-  owner_last_name VARCHAR(255)
   name VARCHAR(255),
+  owner_first_name VARCHAR(255),
+  owner_last_name VARCHAR(255),
   balance DECIMAL(12,2)
 );
 

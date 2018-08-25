@@ -15,7 +15,8 @@ class Account
 
   def save()
     sql = "INSERT INTO accounts
-    (name, balance) VALUES ($1, $2, $3, $4)
+    (name, owner_first_name, owner_last_name, balance)
+    VALUES ($1, $2, $3, $4)
     RETURNING id "
     values = [@name, @owner_first_name, @owner_last_name, @balance]
     result = SqlRunner.run(sql, values).first
