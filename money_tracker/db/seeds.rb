@@ -11,11 +11,6 @@ Merchant.delete_all()
 Account.delete_all()
 Transaction.delete_all()
 
-tags = Tag.all()
-transactions= Transaction.all()
-merchants = Merchant.all()
-accounts = Account.all()
-
 tag1 = Tag.new({"name" => "Groceries"})
 tag1.save()
 
@@ -45,6 +40,12 @@ transaction1.save()
 
 transaction2 = Transaction.new({"amount" => 15.00, "description" => "round of drinks",
   "merchant_id" => merchant3.id, "tag_id" => tag2.id, "account_id" => account1.id})
+  transaction2.save()
+
+  tags = Tag.all()
+  transactions= Transaction.all()
+  merchants = Merchant.all()
+  accounts = Account.all()
 
 binding.pry
 nil

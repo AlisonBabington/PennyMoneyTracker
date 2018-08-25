@@ -6,16 +6,23 @@ class TransactionTest < MiniTest::Test
 
   def setup()
     @transaction1 = Transaction.new(
-      {"description" => "weekly shop", "amount" => "49.56"}
+      {"description" => "food shop", "amount" => "20.50"}
     )
+    @transaction2 = Transaction.new({"description" => "cinema tickets",
+      "amount" => "19.00"})
+
   end
 
   def test_transaction_has_description()
-    assert_equal("weekly shop", @transaction1.description)
+    assert_equal("food shop", @transaction1.description)
   end
 
   def test_transaction_has_amount()
-    assert_equal(49.56, @transaction1.amount)
+    assert_equal(20.50, @transaction1.amount)
   end
 
+  def test_transaction_totals()
+    actual = Transaction.totals
+    assert_equal(39.50, actual)
+  end
 end
