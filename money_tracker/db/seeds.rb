@@ -34,11 +34,11 @@ merchant4.save()
 account1 = Account.new({"name" => "Current", "balance" => "3332.25"})
 account1.save()
 
-transaction1 = Transaction.new({"amount" => 24.50, "description" => "2 x cinema tickets and popcorn",
+transaction1 = Transaction.new({"amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",
   "merchant_id" => merchant2.id, "tag_id" => tag2.id, "account_id" => account1.id })
 transaction1.save()
 
-transaction2 = Transaction.new({"amount" => 15.00, "description" => "round of drinks",
+transaction2 = Transaction.new({"amount" => 15.00, "description" => "Round of Drinks",
   "merchant_id" => merchant3.id, "tag_id" => tag2.id, "account_id" => account1.id})
   transaction2.save()
 

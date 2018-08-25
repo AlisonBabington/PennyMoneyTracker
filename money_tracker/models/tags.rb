@@ -34,6 +34,16 @@ attr_accessor :name
     SqlRunner.run(sql,values)
   end
 
+  def find_transactions()
+    sql = "SELECT transactions.* FROM transactions
+    INNER JOIN tags
+    ON tags.id = transactions.tag_id
+    WHERE transactions.tag_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return Transaction.map_transactions(results)
+  end
+
   def self.find_by_name(name)
     sql = "SELECT * FROM tags
     WHERE name = $1"
