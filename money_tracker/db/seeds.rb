@@ -42,6 +42,14 @@ transaction2 = Transaction.new({"amount" => 15.00, "description" => "round of dr
   "merchant_id" => merchant3.id, "tag_id" => tag2.id, "account_id" => account1.id})
   transaction2.save()
 
+transaction3 = Transaction.new({"amount" => 52.50, "description" => "Weekly Shop",
+  "merchant_id" => merchant1.id, "tag_id" => tag1.id, "account_id" => account1.id})
+transaction3.save()
+
+transaction4 = Transaction.new({"amount" => 12.50, "description" => "Burger",
+  "merchant_id" => merchant3.id, "tag_id" => tag2.id, "account_id" => account1.id})
+transaction4.save()
+
   tags = Tag.all()
   transactions= Transaction.all()
   merchants = Merchant.all()

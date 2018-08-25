@@ -36,6 +36,15 @@ class Account
    SqlRunner.run(sql, values)
   end
 
+  def reduce_balance(transaction)
+    sql = "SELECT transaction.amount from transactions
+    INNER JOIN transactions
+    ON transactions.account_id = account.id
+    WHERE transactions.account_id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.find_by_name(name)
     sql = "SELECT * FROM accounts
     WHERE name = $1"

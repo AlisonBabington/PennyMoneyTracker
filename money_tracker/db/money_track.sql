@@ -16,13 +16,13 @@ CREATE TABLE merchants (
 CREATE TABLE accounts (
   id SERIAL8 PRIMARY KEY,
   name VARCHAR(255),
-  balance REAL
+  balance DECIMAL(12,2)
 );
 
 CREATE TABLE transactions (
   id SERIAL8 PRIMARY KEY,
   description VARCHAR(255),
-  amount REAL,
+  amount DECIMAL(12,2),
   tag_ID INT8 REFERENCES tags(id) ON DELETE CASCADE,
   merchant_id INT8 REFERENCES merchants(id) ON DELETE CASCADE,
   account_id INT8 REFERENCES accounts(id) ON DELETE CASCADE

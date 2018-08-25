@@ -42,6 +42,16 @@ class Merchant
     result = Merchant.map_merchant(found_merchant)
   end
 
+  def find_transactions()
+  sql = "SELECT transactions.* FROM transactions
+  INNER JOIN merchants
+  ON transactions.merchant_id = merchants.id
+  WHERE transactions.merchant_id = $1"
+  values = [@id]
+  results = SqlRunner.run(sql, values)
+  return Transaction.map_transactions(results)
+end
+
   def self.find_by_id(id)
     sql = "SELECT * FROM merchants
     WHERE id = $1"

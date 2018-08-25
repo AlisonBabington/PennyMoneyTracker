@@ -40,6 +40,16 @@ class Transaction
    SqlRunner.run(sql, values)
   end
 
+  def reduce_balance()
+    sql = " BEGIN;
+    SELECT amount from transactions
+    INNER JOIN on accounts
+    WHERE account.id = transactions.account_id
+    WHERE id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values).first.to_s
+  end
+
   # def get_transaction_amount()
   #   sql = "SELECT amount FROM transactions
   #   WHERE id = $1"
@@ -76,6 +86,16 @@ class Transaction
    transactions = Transaction.all
    amount = transactions.map { |transaction| transaction.amount }
    amount.reduce(:+)
+ end
+
+ def self.merchants(merchant)
+   sql = "SELECT transactions.* FROM transactions
+   INNER JOIN merchants
+   ON merchants.id = transactions.merchant_id
+   WHERE merchants.id = $1"
+   values = [@merchant_id]
+   found_transaction = SqlRunner.run(sql, values)
+   result = Transaction.map_transactions(found_transaction)
  end
 
   def self.find_by_id(id)
