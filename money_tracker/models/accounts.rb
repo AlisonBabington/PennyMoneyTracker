@@ -3,19 +3,21 @@ require_relative('../db/sql_runner')
 class Account
 
   attr_reader :id
-  attr_accessor :name, :balance
+  attr_accessor :name, :owner_first_name, :owner_last_name, :balance
 
   def initialize(details)
     @id = details['id'].to_i if details['id'].to_i
     @name = details['name']
+    @owner_first_name = details['owner_first_name']
+    @owner_last_name = details['owner_last_name']
     @balance = details['balance'].to_f.round(2)
   end
 
   def save()
     sql = "INSERT INTO accounts
-    (name, balance) VALUES ($1, $2)
+    (name, balance) VALUES ($1, $2, $3, $4)
     RETURNING id "
-    values = [@name, @balance]
+    values = [@name, @owner_first_name, @owner_last_name, @balance]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
@@ -23,9 +25,9 @@ class Account
   def update()
     sql = "UPDATE accounts
     SET (name, balance) =
-    ($1, $2)
-    WHERE id = $3"
-    values = [@name, @balance, @id]
+    ($1, $2, $3, $4)
+    WHERE id = $5"
+    values = [@name,@owner_first_name, @owner_last_name, @balance, @id]
     SqlRunner.run(sql, values)
   end
 
