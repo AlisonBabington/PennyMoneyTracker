@@ -3,10 +3,6 @@
 <p>Merchant: <%= Merchant.find_by_id(@transaction.merchant_id).name %></p>
 <p>Tag: <%= Tag.find_by_id(@transaction.tag_id).name %></p>
 
-<div>
-  <form action="/transactions/<%= @transaction.id %>/edit" method = "get">
-    <input class="button" type="submit" value="Edit Transaction" />
-  </form>
 
   <form action="/transactions/<%= @transaction.id %>/delete" method="post">
     <input class="button" type="submit" value="Delete Transaction" />

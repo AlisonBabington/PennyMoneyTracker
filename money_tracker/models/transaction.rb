@@ -9,9 +9,9 @@ class Transaction
     @id = details['id'].to_i if details['id']
     @amount = details['amount'].to_f.round(2)
     @description = details['description']
-    @merchant_id = details['merchant_id'].to_i if details['merchant_id'].to_i
-    @tag_id = details['tag_id'].to_i if details ['tag_id'].to_i
-    @account_id = details['account_id'] if details ['tag_id'].to_i
+    @merchant_id = details['merchant_id'].to_i if details['merchant_id']
+    @tag_id = details['tag_id'].to_i if details ['tag_id']
+    @account_id = details['account_id'] if details ['tag_id']
   end
 
   def save()
@@ -22,7 +22,7 @@ class Transaction
     values = [@amount, @description, @merchant_id, @tag_id, @account_id]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
-  end 
+  end
 
   def update()
     sql = "UPDATE transactions
