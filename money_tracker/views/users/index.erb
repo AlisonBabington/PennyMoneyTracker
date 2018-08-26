@@ -1,13 +1,13 @@
 
-<h1>Accounts</h1>
+<h1>Users</h1>
 
 <ul>
-  <% for account in @accounts %>
+  <% for user in @users %>
   <li>
-  <p>First Name: <%=account.owner_first_name %><br>
-  Last Name: <%= account.owner_last_name %><br>
-  Account Type:<a href="/accounts/<%= account.id %>"> <%= account.name %></a> <br>
-  Account Balance: <%= account.balance %></p>
+  <p>First Name: <%=user.owner_first_name %><br>
+  Last Name: <%= user.owner_last_name %><br>
+  User Type:<a href="/users/<%= user.id %>"> <%= user.name %></a> <br>
+  User Balance: <%= user.balance %></p>
 
   </li>
   <% end %>

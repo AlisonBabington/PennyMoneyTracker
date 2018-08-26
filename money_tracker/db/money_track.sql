@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS transactions;
-DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS merchants;
 DROP TABLE IF EXISTS tags;
 
@@ -13,7 +13,7 @@ CREATE TABLE merchants (
   name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE user (
+CREATE TABLE users (
   id SERIAL8 PRIMARY KEY,
   name VARCHAR(255),
   owner_first_name VARCHAR(255),
@@ -27,5 +27,5 @@ CREATE TABLE transactions (
   amount DECIMAL(12,3),
   tag_ID INT8 REFERENCES tags(id) ON DELETE CASCADE,
   merchant_id INT8 REFERENCES merchants(id) ON DELETE CASCADE,
-  account_id INT8 REFERENCES accounts(id) ON DELETE CASCADE
+  user_id INT8 REFERENCES users(id) ON DELETE CASCADE
 );

@@ -26,7 +26,7 @@ end
 post '/tags/:id' do #update
   tag = Tag.new(params)
   tag.update()
-  redirect tp "/tags/#{tag.id}"
+  redirect to "/tags/#{tag.id}"
 end
 
 post "/tags/:id/delete" do #delete
