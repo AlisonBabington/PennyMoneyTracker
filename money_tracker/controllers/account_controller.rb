@@ -16,7 +16,6 @@ get '/accounts/:id' do # show
   erb( :"accounts/show" )
 end
 
-
 post '/accounts' do # create
   @account = Account.new(params)
   @account.save()
