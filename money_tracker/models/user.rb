@@ -43,13 +43,8 @@ class User
     @owner_first_name + @owner_last_name
   end
 
-  def reduce_balance(transaction)
-    sql = "SELECT transaction.amount from transactions
-    INNER JOIN transactions
-    ON transactions.user_id = user.id
-    WHERE transactions.user_id = $1"
-    values = [@id]
-    SqlRunner.run(sql, values)
+  def update_balance(amount)
+    @balance += amount
   end
 
   def self.find_by_name(name)
