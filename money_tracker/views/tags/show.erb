@@ -1,0 +1,12 @@
+<p>Name: <%= @tag.name %></p>
+
+
+<div>
+  <form action="/tags/<%= @tag.id %>/edit" method = "get">
+    <input class="button" type="submit" value="Edit Tag" />
+  </form>
+
+  <form action="/tags/<%= @tag.id %>/delete" method="post">
+    <input class="button" type="submit" value="Delete Tag" />
+  </form>
+</div>
