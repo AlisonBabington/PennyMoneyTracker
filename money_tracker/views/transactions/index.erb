@@ -1,0 +1,14 @@
+<h1>Transactions</h1>
+
+<ul>
+  <% for transaction in @transactions %>
+  <li>
+  <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
+  Amount: <%=transaction.amount %><br>
+  Description: <%= transaction.description %></a><br>
+  Merchant:<a href="/merchants/<%= transaction.merchant_id %>"> <%= transaction.merchant_id %></a> <br>
+  Tag: <a href="/tags/<%= transaction.tag_id %>"> <%= transaction.tag_id %></p></a>
+
+  </li>
+  <% end %>
+</ul>
