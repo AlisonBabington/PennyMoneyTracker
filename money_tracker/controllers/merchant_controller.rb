@@ -6,6 +6,10 @@ get '/merchants' do # index
   erb( :"merchants/index" )
 end
 
+# get '/merchants/new' do #new
+#   erb(:"merchants/new")
+# end
+
 get '/merchants/:id' do # show
   @merchant = Merchant.find_by_id(params[:id])
   erb( :"merchants/show" )
