@@ -1,0 +1,12 @@
+<p>Name: <%= @merchant.name %></p>
+
+
+<div>
+  <form action="/merchant/<%= @merchant.id %>/edit" method = "get">
+    <input class="button" type="submit" value="Edit Merchant" />
+  </form>
+
+  <form action="/merchant/<%= @merchant.id %>/delete" method="post">
+    <input class="button" type="submit" value="Delete Merchant" />
+  </form>
+</div>
