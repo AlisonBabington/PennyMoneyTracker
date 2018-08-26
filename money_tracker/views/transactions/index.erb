@@ -7,13 +7,15 @@
   Amount: £<%=transaction.amount %><br>
   Description: <%= transaction.description %></a><br>
   Merchant:<a href="/merchants/<%= transaction.merchant_id %>">
-  <%= Merchant.find_by_id(transaction.merchant_id).name %></a> <br>
+  <% each_merchant =  Merchant.find_by_id(transaction.merchant_id) %>
+  <%= each_merchant.name %></a> <br>
   Tag: <a href="/tags/<%= transaction.tag_id %>">
   <%= Tag.find_by_id(transaction.tag_id).name %></a></p>
 
   </li>
   <% end %>
 </ul>
+
 <div>
   Total: £<%= Transaction.totals %>
 </div>

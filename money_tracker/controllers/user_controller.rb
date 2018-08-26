@@ -27,7 +27,7 @@ end
 post '/users/:id' do #update
   user = User.new(params)
   user.update()
-  redirect tp "/users/#{user.id}"
+  redirect to "/users/#{user.id}"
 end
 
 post "/users/:id/delete" do #delete

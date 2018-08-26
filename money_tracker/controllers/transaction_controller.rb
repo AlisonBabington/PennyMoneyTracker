@@ -14,9 +14,10 @@ get '/transactions/:id' do # show
 end
 
 post '/transactions' do # create
+  p params
   @transaction = Transaction.new(params)
   @transaction.save()
-  redirect to '/transactions'
+  redirect to "/users"
 end
 
 get '/transactions/:id/edit' do #edit

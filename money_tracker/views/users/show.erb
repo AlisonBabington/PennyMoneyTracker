@@ -1,7 +1,34 @@
-<p>First Name: <%= @user.owner_first_name %></p>
-<p>Surname: <%= @user.owner_last_name %></p>
-<p>User Type: <%= @user.name %></p>
-<p>Balance: £<%= @user.balance %></p>
+<h1> Hi <%= @user.owner_first_name %> </h1>
+
+Your current balance is <%= @user.balance %><br>
+<br>
+
+<form method="post" action="/transactions">
+  <label for="amount">Amount: £</label>
+  <input id="amount-field" type="text" name="amount" />
+  <label for="description">Description:</label>
+  <input id="desc-field" type="text" name="description" />
+  <label>
+    <p> Merchant:
+    <select name = "merchant_id">
+      <% for merchant in Merchant.all %>
+      <option value = <%= merchant.id %> > <%= merchant.name %> </option>
+    </select>
+    <% end %>
+  </p>
+  </label>
+  <label>
+    <p> Tag:
+    <select name = "tag_id">
+      <% for tag in Tag.all %>
+      <option value = <%= tag.id %> > <%= tag.name %> </option>
+    </select>
+    <% end %>
+  </p>
+  </label>
+
+  <input type='submit' value="Add Transaction"/>
+</form>
 
 <div>
   <form action="/users/<%= @user.id %>/edit" method = "get">

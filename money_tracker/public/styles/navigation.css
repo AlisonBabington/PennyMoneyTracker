@@ -1,0 +1,20 @@
+.nav_menu {
+    width: 300px;
+}
+
+.nav_menu a {
+    background-color: #0B2545;
+    color: #8DA9C4;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.nav_menu a:hover {
+    background-color: #134074;
+}
+
+.nav_menu a.active {
+    background-color: #285180;
+    color: white;
+}
