@@ -4,7 +4,7 @@
   <% for transaction in @transactions %>
   <li>
   <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
-  Amount: <%=transaction.amount %><br>
+  Amount: £<%=transaction.amount %><br>
   Description: <%= transaction.description %></a><br>
   Merchant:<a href="/merchants/<%= transaction.merchant_id %>">
   <%= Merchant.find_by_id(transaction.merchant_id).name %></a> <br>
