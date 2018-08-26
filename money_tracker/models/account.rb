@@ -51,7 +51,7 @@ class Account
     values = [@id]
     SqlRunner.run(sql, values)
   end
-
+ 
   def self.find_by_name(name)
     sql = "SELECT * FROM accounts
     WHERE name = $1"

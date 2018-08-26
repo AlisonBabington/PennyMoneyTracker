@@ -10,7 +10,7 @@ class Merchant
     @name = details['name']
   end
 
-  def save()
+  def save() 
     sql = "INSERT INTO merchants
     (name) VALUES ($1)
     RETURNING id "

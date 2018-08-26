@@ -22,7 +22,7 @@ class Transaction
     values = [@amount, @description, @merchant_id, @tag_id, @account_id]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
-  end
+  end 
 
   def update()
     sql = "UPDATE transactions
