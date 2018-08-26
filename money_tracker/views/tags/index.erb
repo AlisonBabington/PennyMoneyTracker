@@ -1,0 +1,17 @@
+<h1>Tags</h1>
+
+<ul>
+  <% for tag in @tags %>
+  <li>
+  <p>Name:<a href= "tags/<%= tag.id %>" ><%= tag.name %></a>
+  </p>
+</li>
+<% end %>
+</ul>
+
+<form method="post" action="/tags">
+    <label for="name">Name:</label>
+    <input id="name-field" type="text" name="name" />
+
+    <input type='submit' value="Add Tag"/>
+</form>
