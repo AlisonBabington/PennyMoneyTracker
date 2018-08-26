@@ -1,3 +1,13 @@
 <p>First Name: <%= @account.owner_first_name %></p>
 <p>Last Name: <%= @account.owner_last_name %></p>
 <p>Balance: <%= @account.balance %></p>
+
+<div>
+  <form action="/accounts/<%= @account.id %>/edit" method = "GET">
+    <input class="button" type="submit" value="Edit Account" />
+  </form>
+
+  <form action="/accounts/<%= @account.id %>/delete" method="POST">
+    <input class="button" type="submit" value="Delete Account" />
+  </form>
+</div>
