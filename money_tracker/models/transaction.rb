@@ -6,7 +6,7 @@ class Transaction
   attr_accessor :description, :merchant_id, :tag_id, :account_id, :amount
 
   def initialize(details)
-    @id = details['id'].to_i if details['id'].to_i
+    @id = details['id'].to_i if details['id']
     @amount = details['amount'].to_f.round(2)
     @description = details['description']
     @merchant_id = details['merchant_id'].to_i if details['merchant_id'].to_i
@@ -50,19 +50,19 @@ class Transaction
     result = SqlRunner.run(sql, values).first.to_s
   end
 
-  # def get_transaction_amount()
-  #   sql = "SELECT amount FROM transactions
-  #   WHERE id = $1"
-  #   values = [@id]
-  #   result = SqlRunner.run(sql, values).first.to_s
-  #   p result
-  # end
+  def get_transaction_amount()
+    sql = "SELECT amount FROM transactions
+    WHERE id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values).first.to_f
+    p result
+  end
 
   # def reduce_balance(account)
   #   sql = "UPDATE accounts
   #   SET (balance) = (balance - transaction.amount)
   #   INNER JOIN transactions
-  #   ON transactions.account_id = account.id
+  #   ON transactions.account_id = account.ids
   #   WHERE id = $1"
   #   values = [@id]
   #   SqlRunner.run(sql, values)
@@ -102,8 +102,8 @@ class Transaction
     sql = "SELECT * FROM transactions
     WHERE id = $1"
     values = [id]
-    found_merchant = SqlRunner.run(sql, values)
-    result = Transaction.map_transactions(found_transaction)
+    found_transaction = SqlRunner.run(sql, values)
+    return Transaction.new(found_transaction.first)
   end
 
   def self.map_transactions(transaction_info)

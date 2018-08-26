@@ -6,7 +6,7 @@ class Merchant
   attr_accessor :name
 
   def initialize(details)
-    @id = details['id'].to_i if details['id'].to_i
+    @id = details['id'].to_i if details['id']
     @name = details['name']
   end
 
@@ -34,30 +34,31 @@ class Merchant
    SqlRunner.run(sql, values)
   end
 
+  def find_transactions()
+    sql = "SELECT transactions.* FROM transactions
+    INNER JOIN merchants
+    ON transactions.merchant_id = merchants.id
+    WHERE transactions.merchant_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return Transaction.map_transactions(results)
+  end
+
   def self.find_by_name(name)
     sql = "SELECT * FROM merchants
     WHERE name = $1"
     values = [name]
     found_merchant = SqlRunner.run(sql, values)
-    result = Merchant.map_merchant(found_merchant)
+    return Merchant.new(found_merchant.first)
   end
 
-  def find_transactions()
-  sql = "SELECT transactions.* FROM transactions
-  INNER JOIN merchants
-  ON transactions.merchant_id = merchants.id
-  WHERE transactions.merchant_id = $1"
-  values = [@id]
-  results = SqlRunner.run(sql, values)
-  return Transaction.map_transactions(results)
-end
 
   def self.find_by_id(id)
     sql = "SELECT * FROM merchants
     WHERE id = $1"
     values = [id]
     found_merchant = SqlRunner.run(sql, values)
-    result = Merchant.map_merchant(found_merchant)
+    return Merchant.new(found_merchant.first)
   end
 
   def self.map_merchant(merchant_info)

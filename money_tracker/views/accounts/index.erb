@@ -1,0 +1,18 @@
+
+<h1>Accounts</h1>
+
+<ul>
+  <% for account in @accounts %>
+  <li>
+  <p>First Name: <%=account.owner_first_name %><br>
+  Last Name: <%= account.owner_last_name %><br>
+  Account Type: <%= account.name %><br>
+  Account Balance: <%= account.balance %></p>
+    <p>
+      <form action="/accounts/<%= account.id %>/delete" method="POST">
+        <input class="button" type="submit" value="delete" />
+      </form>
+    </p>
+  </li>
+  <% end %>
+</ul>

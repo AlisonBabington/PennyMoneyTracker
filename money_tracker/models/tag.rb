@@ -49,7 +49,7 @@ attr_accessor :name
     WHERE name = $1"
     values = [name]
     found_tag = SqlRunner.run(sql,values)
-    result = Tag.map_tags(found_tag)
+    return Tag.new(found_tag.first)
   end
 
   def self.map_tags(tag_info)

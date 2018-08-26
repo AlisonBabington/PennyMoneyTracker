@@ -6,7 +6,7 @@ class Account
   attr_accessor :name, :owner_first_name, :owner_last_name, :balance
 
   def initialize(details)
-    @id = details['id'].to_i if details['id'].to_i
+    @id = details['id'].to_i if details['id']
     @name = details['name']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
@@ -39,6 +39,10 @@ class Account
    SqlRunner.run(sql, values)
   end
 
+  def pretty_name()
+    @owner_first_name + @owner_last_name
+  end
+
   def reduce_balance(transaction)
     sql = "SELECT transaction.amount from transactions
     INNER JOIN transactions
@@ -53,15 +57,16 @@ class Account
     WHERE name = $1"
     values = [name]
     found_account = SqlRunner.run(sql, values)
-    result = Account.map_accounts(found_account)
+    return Account.new(found_account.first)
   end
 
   def self.find_by_id(id)
     sql = "SELECT * FROM accounts
     WHERE id = $1"
     values = [id]
-    found_merchant = SqlRunner.run(sql, values)
-    result = Account.map_accounts(found_account)
+    results = SqlRunner.run(sql, values)
+
+    return Account.new(results.first)
   end
 
   def self.map_accounts(account_info)
