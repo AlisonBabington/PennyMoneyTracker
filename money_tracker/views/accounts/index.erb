@@ -6,7 +6,7 @@
   <li>
   <p>First Name: <%=account.owner_first_name %><br>
   Last Name: <%= account.owner_last_name %><br>
-  Account Type: <%= account.name %><br>
+  Account Type:<a href="/accounts/<%= account.id %>"> <%= account.name %></a> <br>
   Account Balance: <%= account.balance %></p>
     <p>
       <form action="/accounts/<%= account.id %>/delete" method="POST">

@@ -30,12 +30,12 @@ end
 
 post '/accounts/:id' do #update
   account = Account.new(params)
-  account.update
+  account.update()
   redirect tp "/accounts/#{account.id}"
 end
 
 post "/accounts/:id/delete" do #delete
   account = Account.find_by_id(params[:id])
-  account.delete
+  account.delete()
   redirect to "/accounts"
 end
