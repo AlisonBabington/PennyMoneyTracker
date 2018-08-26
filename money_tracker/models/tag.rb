@@ -10,7 +10,7 @@ attr_accessor :name
     @name = details['name']
   end
 
-  def save() 
+  def save()
     sql= "INSERT INTO tags
     (name) VALUES ($1)
     RETURNING id "
@@ -48,6 +48,14 @@ attr_accessor :name
     sql = "SELECT * FROM tags
     WHERE name = $1"
     values = [name]
+    found_tag = SqlRunner.run(sql,values)
+    return Tag.new(found_tag.first)
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM tags
+    WHERE id = $1"
+    values = [id]
     found_tag = SqlRunner.run(sql,values)
     return Tag.new(found_tag.first)
   end
