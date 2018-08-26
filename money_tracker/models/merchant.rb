@@ -2,7 +2,7 @@ require_relative( '../db/sql_runner' )
 
 class Merchant
 
-  attr_accessor :id
+  attr_reader :id
   attr_accessor :name
 
   def initialize(details)
@@ -10,7 +10,7 @@ class Merchant
     @name = details['name']
   end
 
-  def save() 
+  def save()
     sql = "INSERT INTO merchants
     (name) VALUES ($1)
     RETURNING id "

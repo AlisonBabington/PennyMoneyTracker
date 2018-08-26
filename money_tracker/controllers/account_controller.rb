@@ -7,9 +7,6 @@ get '/accounts' do # index
   erb( :"accounts/index" )
 end
 
-get '/accounts/new' do # new
-  erb( :"accounts/new ")
-end
 
 get '/accounts/:id' do # show
   @account = Account.find_by_id(params[:id])

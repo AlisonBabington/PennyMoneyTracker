@@ -1,0 +1,10 @@
+<h1>Merchants</h1>
+
+<ul>
+  <% for merchant in @merchants %>
+  <li>
+  <p>Name:<a href= "merchants/<%= merchant.id %>" ><%= merchant.name %></a>
+  </p>
+</li>
+<% end %>
+</ul>

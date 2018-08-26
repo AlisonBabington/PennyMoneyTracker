@@ -4,11 +4,11 @@
 <p>Balance: <%= @account.balance %></p>
 
 <div>
-  <form action="/accounts/<%= @account.id %>/edit" method = "GET">
+  <form action="/accounts/<%= @account.id %>/edit" method = "get">
     <input class="button" type="submit" value="Edit Account" />
   </form>
 
-  <form action="/accounts/<%= @account.id %>/delete" method="POST">
+  <form action="/accounts/<%= @account.id %>/delete" method="post">
     <input class="button" type="submit" value="Delete Account" />
   </form>
 </div>
