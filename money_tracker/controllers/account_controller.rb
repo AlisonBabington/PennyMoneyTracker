@@ -19,7 +19,7 @@ post '/accounts' do # create
   redirect to '/accounts'
 end
 
-get 'accounts/:id/edit' do #edit
+get '/accounts/:id/edit' do #edit
   @account = Account.find_by_id(params[:id])
   erb(:"accounts/edit")
 end

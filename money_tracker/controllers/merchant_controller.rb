@@ -17,7 +17,7 @@ post '/merchants' do # create
   redirect to '/merchants'
 end
 
-get 'merchants/:id/edit' do #edit
+get '/merchants/:id/edit' do #edit
   @merchant = Merchant.find_by_id(params[:id])
   erb(:"merchants/edit")
 end
