@@ -3,7 +3,7 @@ require_relative('../db/sql_runner')
 class Transaction
 
   attr_reader :id
-  attr_accessor :description, :merchant_id, :tag_id, :account_id, :amount
+  attr_accessor :description, :merchant_id, :tag_id, :user_id, :amount
 
   def initialize(details)
     @id = details['id'].to_i if details['id']
@@ -11,25 +11,25 @@ class Transaction
     @description = details['description']
     @merchant_id = details['merchant_id'].to_i if details['merchant_id']
     @tag_id = details['tag_id'].to_i if details ['tag_id']
-    @account_id = details['account_id'] if details ['tag_id']
+    @user_id = details['user_id'] if details ['tag_id']
   end
 
   def save()
     sql = "INSERT INTO transactions
-    (amount, description, merchant_id, tag_id, account_id)
+    (amount, description, merchant_id, tag_id, user_id)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING id "
-    values = [@amount, @description, @merchant_id, @tag_id, @account_id]
+    values = [@amount, @description, @merchant_id, @tag_id, @user_id]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
 
   def update()
     sql = "UPDATE transactions
-    SET (amount, description, merchant_id, tag_id, account_id) =
+    SET (amount, description, merchant_id, tag_id, user_id) =
     ($1, $2, $3, $4, $5)
     WHERE id = $6"
-    values = [@amount, @description, @merchant_id, @tag_id, @account_id, @id]
+    values = [@amount, @description, @merchant_id, @tag_id, @user_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -43,8 +43,8 @@ class Transaction
   def reduce_balance()
     sql = " BEGIN;
     SELECT amount from transactions
-    INNER JOIN on accounts
-    WHERE account.id = transactions.account_id
+    INNER JOIN on users
+    WHERE user.id = transactions.user_id
     WHERE id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values).first.to_s
@@ -58,18 +58,18 @@ class Transaction
     p result
   end
 
-  # def reduce_balance(account)
-  #   sql = "UPDATE accounts
+  # def reduce_balance(user)
+  #   sql = "UPDATE users
   #   SET (balance) = (balance - transaction.amount)
   #   INNER JOIN transactions
-  #   ON transactions.account_id = account.ids
+  #   ON transactions.user_id = user.ids
   #   WHERE id = $1"
   #   values = [@id]
   #   SqlRunner.run(sql, values)
   # end
 
   #reduce_balance
-  #join accounts and transactions
+  #join users and transactions
   #reduce balance by transaction amount
   #update balance to this amount#
 

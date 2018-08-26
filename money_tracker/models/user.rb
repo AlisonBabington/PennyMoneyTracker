@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner')
 
-class Account
+class User
 
   attr_reader :id
   attr_accessor :name, :owner_first_name, :owner_last_name, :balance
@@ -14,7 +14,7 @@ class Account
   end
 
   def save()
-    sql = "INSERT INTO accounts
+    sql = "INSERT INTO users
     (name, owner_first_name, owner_last_name, balance)
     VALUES ($1, $2, $3, $4)
     RETURNING id "
@@ -24,7 +24,7 @@ class Account
   end
 
   def update()
-    sql = "UPDATE accounts
+    sql = "UPDATE users
     SET (name, balance) =
     ($1, $2, $3, $4)
     WHERE id = $5"
@@ -33,7 +33,7 @@ class Account
   end
 
   def delete()
-   sql = "DELETE FROM accounts
+   sql = "DELETE FROM users
    WHERE id = $1"
    values = [@id]
    SqlRunner.run(sql, values)
@@ -46,41 +46,41 @@ class Account
   def reduce_balance(transaction)
     sql = "SELECT transaction.amount from transactions
     INNER JOIN transactions
-    ON transactions.account_id = account.id
-    WHERE transactions.account_id = $1"
+    ON transactions.user_id = user.id
+    WHERE transactions.user_id = $1"
     values = [@id]
     SqlRunner.run(sql, values)
   end
 
   def self.find_by_name(name)
-    sql = "SELECT * FROM accounts
+    sql = "SELECT * FROM users
     WHERE name = $1"
     values = [name]
-    found_account = SqlRunner.run(sql, values)
-    return Account.new(found_account.first)
+    found_user = SqlRunner.run(sql, values)
+    return User.new(found_user.first)
   end
 
   def self.find_by_id(id)
-    sql = "SELECT * FROM accounts
+    sql = "SELECT * FROM users
     WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
-    return Account.new(results.first)
+    return User.new(results.first)
   end
 
-  def self.map_accounts(account_info)
-   result = account_info.map {|account| Account.new(account)}
+  def self.map_users(user_info)
+   result = user_info.map {|user| User.new(user)}
    return result
   end
 
   def self.all()
-    sql = "SELECT * FROM accounts"
-    accounts = SqlRunner.run(sql)
-    result = Account.map_accounts(accounts)
+    sql = "SELECT * FROM users"
+    users = SqlRunner.run(sql)
+    result = User.map_users(users)
   end
 
   def self.delete_all()
-    sql = "DELETE FROM accounts"
+    sql = "DELETE FROM users"
     SqlRunner.run(sql)
   end
 
