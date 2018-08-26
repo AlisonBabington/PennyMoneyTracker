@@ -13,8 +13,8 @@ Your current balance is <%= @user.balance %><br>
     <select name = "merchant_id">
       <% for merchant in Merchant.all %>
       <option value = <%= merchant.id %> > <%= merchant.name %> </option>
+      <% end %>
     </select>
-    <% end %>
   </p>
   </label>
   <label>
@@ -22,8 +22,8 @@ Your current balance is <%= @user.balance %><br>
     <select name = "tag_id">
       <% for tag in Tag.all %>
       <option value = <%= tag.id %> > <%= tag.name %> </option>
+      <% end %>
     </select>
-    <% end %>
   </p>
   </label>
 

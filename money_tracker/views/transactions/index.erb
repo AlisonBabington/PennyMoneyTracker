@@ -2,7 +2,7 @@
 
 <ul>
   <% for transaction in @transactions %>
-  <li>
+  <li id = "one">
   <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
   Amount: £<%=transaction.amount %><br>
   Description: <%= transaction.description %></a><br>

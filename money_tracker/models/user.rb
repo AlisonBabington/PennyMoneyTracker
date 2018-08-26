@@ -40,11 +40,17 @@ class User
   end
 
   def pretty_name()
-    @owner_first_name + @owner_last_name
+    "#{@owner_first_name} + #{@owner_last_name}"
   end
 
   def update_balance(amount)
     @balance += amount
+  end
+
+  def new_transaction(options)
+    transaction.save()
+    self.update_balance(-transaction.amount)
+    return transaction
   end
 
   def self.find_by_name(name)

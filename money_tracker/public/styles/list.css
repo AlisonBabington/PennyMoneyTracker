@@ -1,0 +1,12 @@
+ul {
+  list-style-type: none;
+  background-color: #0B2545;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+a {
+  color:inherit;
+}
