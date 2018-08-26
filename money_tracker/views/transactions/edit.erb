@@ -8,10 +8,10 @@
 
   <label for="description">Description:</label>
   <input type="text" name="description"
-  id ="description-field" value="<%= @transaction.decription %>"
+  id ="description-field" value="<%= @transaction.description %>"
   />
 
-  <label for="merchant_id">Merchant:</label>
+  <!-- <label for="merchant_id">Merchant:</label>
   <select name="merchant_id" id="merchant_id">
     <% for merchant in @merchants %>
       <option value="<%= merchant.id %>"><%= merchant.name %></option>
@@ -25,7 +25,7 @@
       <option value="<%= merchant.id %>"><%= merchant.name %></option>
     <% end %>
     <option selected="selected" value="<%= @transaction.merchant.id %>" > <%= @transaction.merchant.name %></option>
-  </select>
+  </select> -->
 
   <input type='submit' value="Edit Transaction">
 </form>
