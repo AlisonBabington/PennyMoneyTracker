@@ -47,12 +47,6 @@ class User
     @balance += amount
   end
 
-  def new_transaction(options)
-    transaction.save()
-    self.update_balance(-transaction.amount)
-    return transaction
-  end
-
   def self.find_by_name(name)
     sql = "SELECT * FROM users
     WHERE name = $1"
