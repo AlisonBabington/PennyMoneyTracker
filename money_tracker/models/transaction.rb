@@ -59,29 +59,16 @@ class Transaction
     p result
   end
 
-  # def reduce_balance(user)
-  #   sql = "UPDATE users
-  #   SET (balance) = (balance - transaction.amount)
-  #   INNER JOIN transactions
-  #   ON transactions.user_id = user.ids
-  #   WHERE id = $1"
-  #   values = [@id]
-  #   SqlRunner.run(sql, values)
-  # end
 
-  #reduce_balance
-  #join users and transactions
-  #reduce balance by transaction amount
-  #update balance to this amount#
-
-  def self.filter_by__month(month)
-    sql = "SELECT * FROM transactions
-    WHERE month == $1 "
-    values = [month]
-    found_transaction = SqlRunner.run(sql, values)
-    result = Transaction.map_transactions(found_transaction)
-  end
-
+  def self.filter_by__month(month, year)
+      month = month.to_i
+      year = year.to_i
+      @month_transactions = Transaction.all()
+      monthly = @month_transactions.find_all do
+        |transaction | transaction.time_stamp.include?("#{year}-#{month}")
+      end
+      p Transaction.map_transactions(monthly)
+    end
 
   def self.find_by_name(name)
     sql = "SELECT * FROM transactions

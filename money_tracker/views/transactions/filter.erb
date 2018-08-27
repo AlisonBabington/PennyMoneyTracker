@@ -1,0 +1,18 @@
+<h1>Transactions</h1>
+
+<ul>
+  <% for transaction in @month_transactions %>
+  <li id = "one">
+  <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
+  Date and Time: <%= transaction.time_stamp %><br>
+  Amount: £<%=transaction.amount %><br>
+  Description: <%= transaction.description %></a><br>
+  Merchant:<a href="/merchants/<%= transaction.merchant_id %>">
+  <% each_merchant =  Merchant.find_by_id(transaction.merchant_id) %>
+  <%= each_merchant.name %></a> <br>
+  Tag: <a href="/tags/<%= transaction.tag_id %>">
+  <%= Tag.find_by_id(transaction.tag_id).name %></a></p>
+
+  </li>
+  <% end %>
+</ul>

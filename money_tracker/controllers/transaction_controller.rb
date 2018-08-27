@@ -9,7 +9,7 @@ get '/transactions' do # index
 end
 
 get '/transactions/month' do
-  @transactions = Transaction.filter_by__month
+  @month_transactions = Transaction.filter_by__month(params[:month], params[:year])
   erb (:"transactions/filter")
 end
 
@@ -21,6 +21,7 @@ end
 post '/transactions' do # create
   transaction = Transaction.new(params)
   transaction.save()
+  @user1.reduce_balance(transaction)
   redirect to "/users"
 end
 

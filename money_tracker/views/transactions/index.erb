@@ -21,6 +21,24 @@
   <h1>Total: £<%= Transaction.totals %></h1>
 
   <form action="/transactions/month" method="get">
+    <select name = "month">
+      <option value = "01" > January </option>
+      <option value = "02" > February </option>
+      <option value = "03" > March </option>
+      <option value = "04" > April </option>
+      <option value = "05" > May </option>
+      <option value = "06" > June </option>
+      <option value = "07" > July </option>
+      <option value = "08" > August </option>
+      <option value = "09" > September </option>
+      <option value = "10" > October </option>
+      <option value = "11" > November </option>
+      <option value = "12" > December </option>
+    </select>
+    <select name = "year">
+      <option value = "2018" > 2018 </option>
+      <option value = "2017" > 2017 </option>
+    </select>
     <input class="button" type="submit" value="See Transactions by Month" />
   </form>
   #drop down menu with months names showing saved as value between two months

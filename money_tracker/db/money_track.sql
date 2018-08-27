@@ -18,7 +18,7 @@ CREATE TABLE users (
   name VARCHAR(255),
   owner_first_name VARCHAR(255),
   owner_last_name VARCHAR(255),
-  balance DECIMAL(12,3)
+  monthly_budget DECIMAL(12,3)
 );
 
 CREATE TABLE transactions (
