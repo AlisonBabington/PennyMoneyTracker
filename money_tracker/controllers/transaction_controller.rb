@@ -8,6 +8,11 @@ get '/transactions' do # index
   erb( :"transactions/index" )
 end
 
+get '/transactions/month' do
+  @transactions = Transaction.filter_by__month
+  erb (:"transactions/filter")
+end
+
 get '/transactions/:id' do # show
   @transaction = Transaction.find_by_id(params[:id])
   erb( :"transactions/show" )

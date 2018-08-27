@@ -18,5 +18,10 @@
 </ul>
 
 <div>
-  Total: £<%= Transaction.totals %>
+  <h1>Total: £<%= Transaction.totals %></h1>
+
+  <form action="/transactions/month" method="get">
+    <input class="button" type="submit" value="See Transactions by Month" />
+  </form>
+  #drop down menu with months names showing saved as value between two months
 </div>

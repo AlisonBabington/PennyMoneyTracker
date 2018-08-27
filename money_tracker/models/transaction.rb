@@ -74,6 +74,14 @@ class Transaction
   #reduce balance by transaction amount
   #update balance to this amount#
 
+  def self.filter_by__month(month)
+    sql = "SELECT * FROM transactions
+    WHERE month == $1 "
+    values = [month]
+    found_transaction = SqlRunner.run(sql, values)
+    result = Transaction.map_transactions(found_transaction)
+  end
+
 
   def self.find_by_name(name)
     sql = "SELECT * FROM transactions
