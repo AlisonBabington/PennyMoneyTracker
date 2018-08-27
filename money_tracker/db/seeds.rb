@@ -37,19 +37,23 @@ user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
 user1.save()
 
 transaction1 = Transaction.new({"amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",
-  "merchant_id" => merchant2.id, "tag_id" => tag2.id, "user_id" => user1.id })
+  "merchant_id" => merchant2.id, "tag_id" => tag2.id, "user_id" => user1.id,
+  "time_stamp" => "2018-08-25 20:02:00" })
 transaction1.save()
 
 transaction2 = Transaction.new({"amount" => 15.00, "description" => "Round of Drinks",
-  "merchant_id" => merchant3.id, "tag_id" => tag2.id, "user_id" => user1.id})
+  "merchant_id" => merchant3.id, "tag_id" => tag2.id, "user_id" => user1.id,
+  "time_stamp" => "2018-08-25 22:32:05"})
 transaction2.save()
 
 transaction3 = Transaction.new({"amount" => 52.50, "description" => "Weekly Shop",
-  "merchant_id" => merchant1.id, "tag_id" => tag1.id, "user_id" => user1.id})
+  "merchant_id" => merchant1.id, "tag_id" => tag1.id, "user_id" => user1.id,
+  "time_stamp" => "2018-08-26 10:15:30"})
 transaction3.save()
 
 transaction4 = Transaction.new({"amount" => 12.50, "description" => "Burger",
-  "merchant_id" => merchant3.id, "tag_id" => tag2.id, "user_id" => user1.id})
+  "merchant_id" => merchant3.id, "tag_id" => tag2.id, "user_id" => user1.id,
+  "time_stamp" => "2018-08-26 19:15:30"})
 transaction4.save()
 
 tags = Tag.all()

@@ -12,18 +12,17 @@ class Transaction
     @merchant_id = details['merchant_id'].to_i if details['merchant_id']
     @tag_id = details['tag_id'].to_i if details ['tag_id']
     @user_id = details['user_id'] if details ['tag_id']
-    @time_stamp = details['time_stamp'] if details ['time_stamp']
+    @time_stamp = details['time_stamp']
   end
 
   def save()
     sql = "INSERT INTO transactions
-    (amount, description, merchant_id, tag_id, user_id)
-    VALUES ($1, $2, $3, $4, $5)
-    RETURNING (id, time_stamp) "
-    values = [@amount, @description, @merchant_id, @tag_id, @user_id]
+    (amount, description, merchant_id, tag_id, user_id, time_stamp)
+    VALUES ($1, $2, $3, $4, $5, $6)
+    RETURNING (id) "
+    values = [@amount, @description, @merchant_id, @tag_id, @user_id, @time_stamp]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
-    @time_stamp = result['time_stamp']
   end
 
   def update()

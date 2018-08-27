@@ -1,3 +1,4 @@
+<p>Date and Time: <%= @transaction.time_stamp %></p>
 <p>Amount: £<%= @transaction.amount %></p>
 <p>Description: <%= @transaction.description %></p>
 <p>Merchant: <%= Merchant.find_by_id(@transaction.merchant_id).name %></p>
