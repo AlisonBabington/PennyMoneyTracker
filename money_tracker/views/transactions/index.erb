@@ -5,7 +5,7 @@
   <li id = "one">
   <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
   Date: <%= transaction.time_stamp %><br>
-  Amount: £<%= transaction.gbp_amount %><br>
+  Amount: £ <%= transaction.gbp_amount %><br>
   Description: <%= transaction.description %></a><br>
   Merchant:<a href="/merchants/<%= transaction.merchant_id %>">
   <% each_merchant =  Merchant.find_by_id(transaction.merchant_id) %>

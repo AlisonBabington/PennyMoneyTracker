@@ -31,8 +31,8 @@ end
 
 post '/transactions' do # create
   transaction = Transaction.new(params)
+  transaction.convert_currency()
   transaction.save()
-  Transaction.convert_currency(transaction)
   transaction_user = User.find_by_id(transaction.user_id)
   transaction_user.update_current_budget(transaction)
   # @user = transaction_user

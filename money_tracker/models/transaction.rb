@@ -9,21 +9,22 @@ class Transaction
   def initialize(details)
     @id = details['id'].to_i if details['id']
     @amount = details['amount'].to_f.round(2)
-    @gbp_amount = details['gbp_amount'].to_f if details['gbp_amount']
+    @gbp_amount = details['gbp_amount'].to_f
     @description = details['description']
     @merchant_id = details['merchant_id'].to_i if details['merchant_id']
     @tag_id = details['tag_id'].to_i if details ['tag_id']
-    @user_id = details['user_id'] if details ['tag_id']
+    @user_id = details['user_id'] if details ['user_id']
     @time_stamp = details['time_stamp']
     @currency = details['currency']
   end
 
   def save()
     sql = "INSERT INTO transactions
-    (currency, amount, description, merchant_id, tag_id, user_id, time_stamp)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-    RETURNING (id) "
-    values = [@currency, @amount, @description, @merchant_id, @tag_id, @user_id, @time_stamp]
+    (amount, gbp_amount, description, merchant_id, tag_id, user_id, time_stamp, currency)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING id "
+    values = [ @amount, @gbp_amount, @description, @merchant_id,
+    @tag_id, @user_id, @time_stamp, @currency]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
@@ -61,15 +62,6 @@ class Transaction
     result = SqlRunner.run(sql, values)
   end
 
-  # def reduce_balance()
-  #   sql = "SELECT amount from transactions
-  #   INNER JOIN on users
-  #   WHERE user.id = transactions.user_id
-  #   WHERE id = $1"
-  #   values = [@id]
-  #   result = SqlRunner.run(sql, values).first.to_s
-  # end
-
   def get_transaction_amount()
     sql = "SELECT amount FROM transactions
     WHERE id = $1"
@@ -90,23 +82,19 @@ class Transaction
     @gbp_amount = (@amount * 0.006)
   end
 
-  def self.convert_currency(transaction)
-    if transaction.currency == "GBP"
-      transaction.gbp_amount = transaction.amount
-      transaction.update_currency()
-      return transaction
-    elsif transaction.currency == "USD"
-      transaction.convert_usd
-      transaction.update_currency()
-      return transaction
-    elsif transaction.currency == "EUR"
-      transaction.convert_eur
-      transaction.update_currency()
-      return transaction
-    elsif transaction.currency == "JPY"
-      transaction.convert_jpy
-      transaction.update_currency()
-      return transaction
+  def convert_currency()
+    if @currency == "GBP"
+      @gbp_amount = @amount
+      return
+    elsif @currency == "USD"
+      convert_usd
+      return
+    elsif @currency == "EUR"
+      convert_eur
+      return
+    elsif @currency == "JPY"
+      convert_jpy
+      return
     end
   end
 
@@ -125,6 +113,11 @@ class Transaction
     values = [name]
     found_transaction = SqlRunner.run(sql, values)
     result = Transaction.map_transactions(found_transaction)
+  end
+
+  def total(transaction)
+    amount = transactions.map { |transaction| transaction.amount }
+    amount.reduce(:+)
   end
 
   def self.totals
