@@ -24,6 +24,7 @@ post '/transactions' do # create
   transaction.save()
   transaction_user = User.find_by_id(transaction.user_id)
   transaction_user.update_current_budget(transaction)
+  # @user = transaction_user
   redirect to "/users"
 end
 

@@ -6,12 +6,20 @@ class User
   attr_accessor :name, :owner_first_name, :owner_last_name, :monthly_budget, :current_budget
 
   def initialize(details)
+
+    if details['current_budget'] == nil
+      @current_budget = details['monthly_budget'].to_f
+    else
+      @current_budget = details['current_budget'].to_f
+    end
+
+    # @current_budget = details['current_budget'] == 0 ? details['monthly_budget'].to_f : details['current_budget'].to_f
+
     @id = details['id'].to_i if details['id']
     @name = details['name']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @monthly_budget = details['monthly_budget'].to_f
-    @current_budget = details['monthly_budget'].to_f
   end
 
   def save()
@@ -54,7 +62,12 @@ class User
   end
 
   def update_current_budget(transaction)
-    @current_budget -= transaction.amount
+    @current_budget -= (transaction.amount * 4)
+    sql =  "UPDATE users
+    SET current_budget = $1
+    WHERE id = $2"
+    values = [@current_budget, @id]
+    SqlRunner.run(sql, values)
   end
 
   def self.find_by_name(name)

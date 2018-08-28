@@ -18,13 +18,14 @@ CREATE TABLE users (
   name VARCHAR(255),
   owner_first_name VARCHAR(255),
   owner_last_name VARCHAR(255),
-  monthly_budget DECIMAL(12,3)
+  monthly_budget DECIMAL(12,2),
+  current_budget DECIMAL(12,2)
 );
 
 CREATE TABLE transactions (
   id SERIAL8 PRIMARY KEY,
   description VARCHAR(255),
-  amount DECIMAL(12,3),
+  amount DECIMAL(12,2),
   tag_ID INT8 REFERENCES tags(id) ON DELETE CASCADE,
   merchant_id INT8 REFERENCES merchants(id) ON DELETE CASCADE,
   user_id INT8 REFERENCES users(id) ON DELETE CASCADE,
