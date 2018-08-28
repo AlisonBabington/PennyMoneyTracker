@@ -3,11 +3,13 @@ require_relative('../db/sql_runner')
 class Transaction
 
   attr_reader :id, :time_stamp
-  attr_accessor :description, :merchant_id, :tag_id, :user_id, :amount, :currency
+  attr_accessor :description, :merchant_id, :tag_id, :user_id,
+   :amount, :currency, :gbp_amount
 
   def initialize(details)
     @id = details['id'].to_i if details['id']
     @amount = details['amount'].to_f.round(2)
+    @gbp_amount = details['gbp_amount'].to_f if details['gbp_amount']
     @description = details['description']
     @merchant_id = details['merchant_id'].to_i if details['merchant_id']
     @tag_id = details['tag_id'].to_i if details ['tag_id']
@@ -28,10 +30,18 @@ class Transaction
 
   def update()
     sql = "UPDATE transactions
-    SET (currency, amount, description, merchant_id, tag_id, user_id) =
+    SET (currency, amount, gbp_amount, description, merchant_id, tag_id, user_id) =
     ($1, $2, $3, $4, $5, $6)
     WHERE id = $7"
-    values = [@currency, @amount, @description, @merchant_id, @tag_id, @user_id, @id]
+    values = [@currency, @amount, @gbp_amount, @description, @merchant_id, @tag_id, @user_id, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def update_currency()
+    sql = "UPDATE transactions
+    SET gbp_amount = $1
+    WHERE id = $2"
+    values = [@gbp_amount, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -66,6 +76,38 @@ class Transaction
     values = [@id]
     result = SqlRunner.run(sql, values).first.to_f
     p result
+  end
+
+  def convert_usd()
+    @gbp_amount = (@amount * 0.77)
+  end
+
+  def convert_eur()
+    @gbp_amount = (@amount * 0.91)
+  end
+
+  def convert_jpy()
+    @gbp_amount = (@amount * 0.006)
+  end
+
+  def self.convert_currency(transaction)
+    if transaction.currency == "GBP"
+      transaction.gbp_amount = transaction.amount
+      transaction.update_currency()
+      return transaction
+    elsif transaction.currency == "USD"
+      transaction.convert_usd
+      transaction.update_currency()
+      return transaction
+    elsif transaction.currency == "EUR"
+      transaction.convert_eur
+      transaction.update_currency()
+      return transaction
+    elsif transaction.currency == "JPY"
+      transaction.convert_jpy
+      transaction.update_currency()
+      return transaction
+    end
   end
 
   def self.filter_by_month(month, year)

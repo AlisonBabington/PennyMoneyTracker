@@ -36,12 +36,12 @@ user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
 "owner_last_name" => "Grace", "weekly_budget" => "350.00"})
 user1.save()
 
-transaction1 = Transaction.new({"amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",
+transaction1 = Transaction.new({"currency" => "GBP", "amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",
   "merchant_id" => merchant2.id, "tag_id" => tag2.id, "user_id" => user1.id,
   "time_stamp" => "2018-06-25" })
 transaction1.save()
 
-transaction2 = Transaction.new({"amount" => 15.00, "description" => "Round of Drinks",
+transaction2 = Transaction.new({"currency" => "USD", "amount" => 15.00, "description" => "Round of Drinks",
   "merchant_id" => merchant3.id, "tag_id" => tag2.id, "user_id" => user1.id,
   "time_stamp" => "2018-08-25"})
 transaction2.save()
