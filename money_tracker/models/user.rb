@@ -78,6 +78,10 @@ class User
     SqlRunner.run(sql, values)
   end
 
+  def budget_is_reaching_limit
+    return "Careful! You are reaching the top of your weekly budget!" if @current_budget <= 100
+  end
+
   def self.find_by_name(name)
     sql = "SELECT * FROM users
     WHERE name = $1"
