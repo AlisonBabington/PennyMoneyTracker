@@ -3,7 +3,7 @@ require_relative('../db/sql_runner')
 class User
 
   attr_reader :id
-  attr_accessor :name, :owner_first_name, :owner_last_name, :monthly_budget
+  attr_accessor :name, :owner_first_name, :owner_last_name, :monthly_budget, :current_budget
 
   def initialize(details)
     @id = details['id'].to_i if details['id']
