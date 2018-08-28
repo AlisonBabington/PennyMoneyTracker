@@ -14,6 +14,9 @@ get '/transactions/month' do
   erb (:"transactions/filter")
 end
 
+get '/transactions/tag' do
+  @tag_transactions = Transaction.
+
 get '/transactions/:id' do # show
   @transaction = Transaction.find_by_id(params[:id])
   erb( :"transactions/show" )

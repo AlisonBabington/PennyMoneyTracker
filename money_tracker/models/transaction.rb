@@ -100,6 +100,16 @@ class Transaction
    result = Transaction.map_transactions(found_transaction)
  end
 
+ def self.tags(tag)
+   sql = "SELECT transactions.* FROM transactions
+   INNER JOIN tags
+   ON tags.id = transactions.tag_id
+   WHERE merchants.id = $1"
+   values = [@tag_id]
+   found_transaction = SqlRunner.run(sql, values)
+   result = Transaction.map_transactions(found_transaction)
+ end
+
   def self.find_by_id(id)
     sql = "SELECT * FROM transactions
     WHERE id = $1"
