@@ -91,19 +91,20 @@ class Transaction
   end
 
   def self.convert_currency(transaction)
-    if transaction.currency == "GBP"
+    case transaction.currency
+    when "GBP"
       transaction.gbp_amount = transaction.amount
       transaction.update_currency()
       return transaction
-    elsif transaction.currency == "USD"
+    when "USD"
       transaction.convert_usd
       transaction.update_currency()
       return transaction
-    elsif transaction.currency == "EUR"
+    when transaction.currency == "EUR"
       transaction.convert_eur
       transaction.update_currency()
       return transaction
-    elsif transaction.currency == "JPY"
+    when transaction.currency == "JPY"
       transaction.convert_jpy
       transaction.update_currency()
       return transaction
