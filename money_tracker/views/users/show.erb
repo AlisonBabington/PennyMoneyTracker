@@ -1,6 +1,6 @@
 <h1> Hi <%= @user.owner_first_name %> </h1>
 
-Your weekly budget is £<%= @user.weekly_budget / 4 %><br>
+Your weekly budget is £<%= @user.weekly_budget %><br>
 <br>
 <p>
  <h1> <% if @user.budget_is_reaching_limit? == true  %>

@@ -17,7 +17,7 @@ CREATE TABLE users (
   id SERIAL8 PRIMARY KEY,
   owner_first_name VARCHAR(255),
   owner_last_name VARCHAR(255),
-  monthly_budget DECIMAL(12,2),
+  weekly_budget DECIMAL(12,2),
   current_budget DECIMAL(12,2)
 );
 

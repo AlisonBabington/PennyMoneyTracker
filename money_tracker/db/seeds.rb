@@ -33,7 +33,7 @@ merchant4 = Merchant.new({"name" => "Ovo"})
 merchant4.save()
 
 user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
-"owner_last_name" => "Grace", "monthly_budget" => "1300.00"})
+"owner_last_name" => "Grace", "weekly_budget" => "350.00"})
 user1.save()
 
 transaction1 = Transaction.new({"amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",

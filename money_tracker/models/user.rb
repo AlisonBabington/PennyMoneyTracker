@@ -3,40 +3,40 @@ require_relative('../db/sql_runner')
 class User
 
   attr_reader :id
-  attr_accessor :owner_first_name, :owner_last_name, :monthly_budget, :current_budget
+  attr_accessor :owner_first_name, :owner_last_name, :weekly_budget, :current_budget
 
   def initialize(details)
 
     if details['current_budget'] == nil
-      @current_budget = details['monthly_budget'].to_f
+      @current_budget = details['weekly_budget'].to_f
     else
       @current_budget = details['current_budget'].to_f
     end
 
-    # @current_budget = details['current_budget'] == 0 ? details['monthly_budget'].to_f : details['current_budget'].to_f
+    # @current_budget = details['current_budget'] == 0 ? details['weekly_budget'].to_f : details['current_budget'].to_f
 
     @id = details['id'].to_i if details['id']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
-    @monthly_budget = details['monthly_budget'].to_f
+    @weekly_budget = details['weekly_budget'].to_f
   end
 
   def save()
     sql = "INSERT INTO users
-    (owner_first_name, owner_last_name, monthly_budget)
+    (owner_first_name, owner_last_name, weekly_budget)
     VALUES ($1, $2, $3)
     RETURNING id "
-    values = [@owner_first_name, @owner_last_name, @monthly_budget]
+    values = [@owner_first_name, @owner_last_name, @weekly_budget]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
 
   def update()
     sql = "UPDATE users
-    SET (owner_first_name, owner_last_name, monthly_budget) =
+    SET (owner_first_name, owner_last_name, weekly_budget) =
     ($1, $2, $3)
     WHERE id = $4"
-    values = [@owner_first_name, @owner_last_name, @monthly_budget, @id]
+    values = [@owner_first_name, @owner_last_name, @weekly_budget, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -51,17 +51,17 @@ class User
     "#{@owner_first_name} + #{@owner_last_name}"
   end
 
-  def update_monthly_budget(amount)
-    @monthly_budget += amount
+  def update_weekly_budget(amount)
+    @weekly_budget += amount
     sql =  "UPDATE users
-    SET monthly_budget = $1
+    SET weekly_budget = $1
     WHERE id = $2"
-    values = [@monthly_budget, @id]
+    values = [@weekly_budget, @id]
     SqlRunner.run(sql, values)
   end
 
   def update_current_budget(transaction)
-    @current_budget -= (transaction.amount * 4)
+    @current_budget -= transaction.amount
     sql =  "UPDATE users
     SET current_budget = $1
     WHERE id = $2"
@@ -70,7 +70,7 @@ class User
   end
 
   def update_current_budget_on_delete(transaction)
-    @current_budget -= (transaction.amount * 4)
+    @current_budget -= transaction.amount
     sql =  "UPDATE users
     SET current_budget = $1
     WHERE id = $2"
