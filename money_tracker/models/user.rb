@@ -82,6 +82,19 @@ class User
     @current_budget <= 100
   end
 
+  def end_of_week_money?
+    @current_budget > 0
+  end
+
+  def end_of_week
+    @current_budget = @weekly_budget
+    sql =  "UPDATE users
+    SET current_budget = $1
+    WHERE id = $2"
+    values = [@current_budget, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.find_by_name(name)
     sql = "SELECT * FROM users
     WHERE name = $1"
