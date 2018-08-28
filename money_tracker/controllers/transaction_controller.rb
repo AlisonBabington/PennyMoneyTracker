@@ -16,12 +16,12 @@ end
 
 get '/transactions/tag' do
   @transactions = Transaction.tags(params[:tag_id])
-  erb (:"transactions/index")
+  erb (:"transactions/filter")
 end
 
 get '/transactions/merchant' do
   @transactions = Transaction.merchants(params[:merchant_id])
-  erb (:"transactions/index")
+  erb (:"transactions/filter")
 end
 
 get '/transactions/:id' do # show

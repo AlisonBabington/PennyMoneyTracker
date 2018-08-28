@@ -1,7 +1,9 @@
 <h1>Transactions</h1>
 
 <ul>
+  <% amounts = 0 %>
   <% for transaction in @transactions %>
+  <% amounts += transaction.gbp_amount %>
   <li id = "one">
   <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
   Date: <%= transaction.time_stamp %><br>
@@ -15,4 +17,6 @@
 
   </li>
   <% end %>
+
+  £<%= amounts %>
 </ul>

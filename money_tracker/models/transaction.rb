@@ -115,11 +115,6 @@ class Transaction
     result = Transaction.map_transactions(found_transaction)
   end
 
-  def total(transaction)
-    amount = transactions.map { |transaction| transaction.amount }
-    amount.reduce(:+)
-  end
-
   def self.totals
    transactions = Transaction.all
    amount = transactions.map { |transaction| transaction.amount }
