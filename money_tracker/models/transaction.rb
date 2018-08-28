@@ -59,15 +59,13 @@ class Transaction
     p result
   end
 
-
   def self.filter_by__month(month, year)
-      month = month.to_i
-      year = year.to_i
-      @month_transactions = Transaction.all()
-      monthly = @month_transactions.find_all do
-        |transaction | transaction.time_stamp.include?("#{year}-#{month}")
-      end
-      p Transaction.map_transactions(monthly)
+    sql= "SELECT * FROM transactions
+    WHERE EXTRACT(year from time_stamp) = $2
+    and EXTRACT(month from time_stamp) = $1"
+    values= [month, year]
+    result = SqlRunner.run(sql, values)
+    Transaction.map_transactions(result)
     end
 
   def self.find_by_name(name)

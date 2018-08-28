@@ -5,8 +5,23 @@ ul {
   margin-right: 10%;
   margin-top: 5%;
   margin-bottom: 5%;
+  padding: 5%;
 }
 
 a {
   color:inherit;
+}
+
+form .select:hover {
+  background-color: #134074;
+}
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }

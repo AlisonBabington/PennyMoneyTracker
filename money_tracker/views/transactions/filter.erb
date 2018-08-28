@@ -4,7 +4,7 @@
   <% for transaction in @month_transactions %>
   <li id = "one">
   <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
-  Date and Time: <%= transaction.time_stamp %><br>
+  Date: <%= transaction.time_stamp %><br>
   Amount: £<%=transaction.amount %><br>
   Description: <%= transaction.description %></a><br>
   Merchant:<a href="/merchants/<%= transaction.merchant_id %>">
