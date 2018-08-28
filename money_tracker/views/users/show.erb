@@ -3,16 +3,26 @@
 Your weekly budget is £<%= @user.weekly_budget %><br>
 <br>
 <p>
- <h1> <% if @user.budget_is_reaching_limit? == true  %>
-           <h1> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h1>
-      <% else %>
-            <h1> You have £<%= "#{@user.current_budget}" %> left this week</h1>
-      <% end %>
+  <% if @user.budget_is_reaching_limit? == true  %>
+    <h1> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h1>
+  <% else %>
+    <h1> You have £<%= "#{@user.current_budget}" %> left this week</h1>
+  <% end %>
 </p>
 
 <form method="post" action="/transactions">
   <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
-  <label for="amount">Amount: £</label>
+  <label>
+    <p> Currency:
+  <select name = "currency">
+    <option value = "GBP" > British Pound </option>
+    <option value = "USD" > American Dollars </option>
+    <option value = "JPY" > Japanese Yen </option>
+    <option value = "EUR" > Euro </option>
+  </select>
+  </p>
+</label>
+  <label for="amount">Amount:</label>
   <input id="amount-field" type="text" name="amount" />
   <label for="description">Description:</label>
   <input id="desc-field" type="text" name="description" />
