@@ -13,5 +13,5 @@ require_relative('./models/tag')
 also_reload( './models/*' )
 
 get '/' do
-  erb( :index )
+  erb( :"users/index" )
 end

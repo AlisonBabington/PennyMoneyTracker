@@ -25,7 +25,7 @@ end
 post '/merchants/:id' do #update
   merchant = Merchant.new(params)
   merchant.update()
-  redirect tp "/merchants/#{merchant.id}"
+  redirect to "/merchants/#{merchant.id}"
 end
 
 post "/merchants/:id/delete" do #delete
