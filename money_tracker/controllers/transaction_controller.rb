@@ -10,12 +10,19 @@ get '/transactions' do # index
 end
 
 get '/transactions/month' do
-  @month_transactions = Transaction.filter_by_month(params[:month], params[:year])
+  @transactions = Transaction.filter_by_month(params[:month], params[:year])
   erb (:"transactions/filter")
 end
 
 get '/transactions/tag' do
-  @tag_transactions = Transaction.
+  @transactions = Transaction.tags(params[:tag_id])
+  erb (:"transactions/index")
+end
+
+get '/transactions/merchant' do
+  @transactions = Transaction.merchants(params[:merchant_id])
+  erb (:"transactions/index")
+end
 
 get '/transactions/:id' do # show
   @transaction = Transaction.find_by_id(params[:id])
@@ -45,6 +52,8 @@ end
 
 post "/transactions/:id/delete" do #delete
   transaction = Transaction.find_by_id(params[:id])
+  transaction_user = User.find_by_id(transaction.user_id)
+  transaction_user.update_current_budget_on_delete(transaction)
   transaction.delete()
   redirect to "/transactions"
 end

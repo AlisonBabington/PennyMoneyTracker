@@ -90,22 +90,22 @@ class Transaction
    amount.reduce(:+)
  end
 
- def self.merchants(merchant)
+ def self.merchants(merchant_id)
    sql = "SELECT transactions.* FROM transactions
    INNER JOIN merchants
    ON merchants.id = transactions.merchant_id
-   WHERE merchants.id = $1"
-   values = [@merchant_id]
+   WHERE transactions.merchant_id = $1"
+   values = [merchant_id]
    found_transaction = SqlRunner.run(sql, values)
    result = Transaction.map_transactions(found_transaction)
  end
 
- def self.tags(tag)
+ def self.tags(tag_id)
    sql = "SELECT transactions.* FROM transactions
    INNER JOIN tags
    ON tags.id = transactions.tag_id
-   WHERE merchants.id = $1"
-   values = [@tag_id]
+   WHERE transactions.tag_id = $1"
+   values = [tag_id]
    found_transaction = SqlRunner.run(sql, values)
    result = Transaction.map_transactions(found_transaction)
  end

@@ -3,7 +3,7 @@ require_relative('../db/sql_runner')
 class User
 
   attr_reader :id
-  attr_accessor :name, :owner_first_name, :owner_last_name, :monthly_budget, :current_budget
+  attr_accessor :owner_first_name, :owner_last_name, :monthly_budget, :current_budget
 
   def initialize(details)
 
@@ -16,7 +16,6 @@ class User
     # @current_budget = details['current_budget'] == 0 ? details['monthly_budget'].to_f : details['current_budget'].to_f
 
     @id = details['id'].to_i if details['id']
-    @name = details['name']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @monthly_budget = details['monthly_budget'].to_f
@@ -24,20 +23,20 @@ class User
 
   def save()
     sql = "INSERT INTO users
-    (name, owner_first_name, owner_last_name, monthly_budget)
-    VALUES ($1, $2, $3, $4)
+    (owner_first_name, owner_last_name, monthly_budget)
+    VALUES ($1, $2, $3)
     RETURNING id "
-    values = [@name, @owner_first_name, @owner_last_name, @monthly_budget]
+    values = [@owner_first_name, @owner_last_name, @monthly_budget]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
 
   def update()
     sql = "UPDATE users
-    SET (name, monthly_budget) =
-    ($1, $2, $3, $4)
-    WHERE id = $5"
-    values = [@name,@owner_first_name, @owner_last_name, @monthly_budget, @id]
+    SET (owner_first_name, owner_last_name, monthly_budget) =
+    ($1, $2, $3)
+    WHERE id = $4"
+    values = [@owner_first_name, @owner_last_name, @monthly_budget, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -62,6 +61,15 @@ class User
   end
 
   def update_current_budget(transaction)
+    @current_budget -= (transaction.amount * 4)
+    sql =  "UPDATE users
+    SET current_budget = $1
+    WHERE id = $2"
+    values = [@current_budget, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def update_current_budget_on_delete(transaction)
     @current_budget -= (transaction.amount * 4)
     sql =  "UPDATE users
     SET current_budget = $1
