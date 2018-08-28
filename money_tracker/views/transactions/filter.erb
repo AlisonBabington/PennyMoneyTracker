@@ -20,3 +20,52 @@
 
   £<%= amounts %>
 </ul>
+
+<form action="/transactions/tag" method="get">
+  <label>
+    <p> Filter by Tag:
+    <select name = "tag_id">
+      <% for tag in Tag.all %>
+      <option value = <%= tag.id %> > <%= tag.name %> </option>
+      <% end %>
+    </select>
+  <input class="button" type="submit" value="See Transactions by Tag" />
+</p>
+</form>
+
+<form action="/transactions/merchant" method="get">
+  <label>
+    <p> Filter by Merchant:
+    <select name = "merchant_id">
+      <% for merchant in Merchant.all %>
+      <option value = <%= merchant.id %> > <%= merchant.name %> </option>
+      <% end %>
+    </select>
+  <input class="button" type="submit" value="See Transactions by Merchant" />
+</p>
+</form>
+
+
+<form action="/transactions/month" method="get">
+  <p> Filter by Month:
+  <select name = "month">
+    <option value = "01" > January </option>
+    <option value = "02" > February </option>
+    <option value = "03" > March </option>
+    <option value = "04" > April </option>
+    <option value = "05" > May </option>
+    <option value = "06" > June </option>
+    <option value = "07" > July </option>
+    <option value = "08" > August </option>
+    <option value = "09" > September </option>
+    <option value = "10" > October </option>
+    <option value = "11" > November </option>
+    <option value = "12" > December </option>
+  </select>
+  <select name = "year">
+    <option value = "2018" > 2018 </option>
+    <option value = "2017" > 2017 </option>
+  </select>
+  <input class="button" type="submit" value="See Transactions by Month" />
+</p>
+</form>
