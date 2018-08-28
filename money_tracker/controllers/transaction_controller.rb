@@ -2,6 +2,7 @@ require( 'sinatra' )
 require( 'sinatra/contrib/all' )
 
 require_relative('../models/merchant')
+require_relative('../models/user')
 
 get '/transactions' do # index
   @transactions = Transaction.all()
@@ -9,7 +10,7 @@ get '/transactions' do # index
 end
 
 get '/transactions/month' do
-  @month_transactions = Transaction.filter_by__month(params[:month], params[:year])
+  @month_transactions = Transaction.filter_by_month(params[:month], params[:year])
   erb (:"transactions/filter")
 end
 
@@ -21,7 +22,7 @@ end
 post '/transactions' do # create
   transaction = Transaction.new(params)
   transaction.save()
-  @user1.reduce_balance(transaction)
+  User.reduce_budget(transaction, user)
   redirect to "/users"
 end
 

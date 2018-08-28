@@ -59,7 +59,7 @@ class Transaction
     p result
   end
 
-  def self.filter_by__month(month, year)
+  def self.filter_by_month(month, year)
     sql= "SELECT * FROM transactions
     WHERE EXTRACT(year from time_stamp) = $2
     and EXTRACT(month from time_stamp) = $1"

@@ -47,12 +47,12 @@ class User
     @monthly_budget += amount
   end
 
-  def reduce_balance(transaction)
-    update_monthly_budget(-transaction.amount)
+  def self.reduce_budget(transaction,user)
+    user.update_monthly_budget(-transaction.amount)
     sql = "UPDATE users
     SET monthly_budget = $1
-    WHERE id = $1"
-    values = [@monthly_budget]
+    WHERE id = $2"
+    values = [@monthly_budget, user.id]
     SqlRunner.run(sql, values)
   end
 
