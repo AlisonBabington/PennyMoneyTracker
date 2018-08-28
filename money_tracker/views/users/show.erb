@@ -4,6 +4,7 @@ Your current weekly budget is £<%= @user.monthly_budget / 4 %><br>
 <br>
 
 <form method="post" action="/transactions">
+  <input id="user_id" name="user_id" type="hidden" value="<% user1.id %>">
   <label for="amount">Amount: £</label>
   <input id="amount-field" type="text" name="amount" />
   <label for="description">Description:</label>

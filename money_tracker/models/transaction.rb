@@ -41,15 +41,22 @@ class Transaction
    SqlRunner.run(sql, values)
   end
 
-  def reduce_balance()
-    sql = " BEGIN;
-    SELECT amount from transactions
-    INNER JOIN on users
+  def user()
+    sql = "SELECT * FROM USERS
+    INNER JOIN ON users
     WHERE user.id = transactions.user_id
     WHERE id = $1"
     values = [@id]
-    result = SqlRunner.run(sql, values).first.to_s
-  end
+    result = SqlRunner.run(sql, values)
+
+  # def reduce_balance()
+  #   sql = "SELECT amount from transactions
+  #   INNER JOIN on users
+  #   WHERE user.id = transactions.user_id
+  #   WHERE id = $1"
+  #   values = [@id]
+  #   result = SqlRunner.run(sql, values).first.to_s
+  # end
 
   def get_transaction_amount()
     sql = "SELECT amount FROM transactions
