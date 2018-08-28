@@ -46,6 +46,11 @@ class User
 
   def update_monthly_budget(amount)
     @monthly_budget += amount
+    sql =  "UPDATE users
+    SET monthly_budget = $1
+    WHERE id = $2"
+    values = [@monthly_budget, @id]
+    SqlRunner.run(sql, values)
   end
 
   def update_current_budget(transaction)
