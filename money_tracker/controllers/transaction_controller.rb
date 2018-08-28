@@ -22,7 +22,8 @@ end
 post '/transactions' do # create
   transaction = Transaction.new(params)
   transaction.save()
-  User.reduce_budget(transaction, user)
+  transaction_user = User.find_by_id(transaction.user_id)
+  User.update_current_budget(transaction, transaction_user)
   redirect to "/users"
 end
 

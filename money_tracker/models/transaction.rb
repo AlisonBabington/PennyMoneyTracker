@@ -48,6 +48,7 @@ class Transaction
     WHERE id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values)
+  end
 
   # def reduce_balance()
   #   sql = "SELECT amount from transactions
@@ -73,7 +74,7 @@ class Transaction
     values= [month, year]
     result = SqlRunner.run(sql, values)
     Transaction.map_transactions(result)
-    end
+  end
 
   def self.find_by_name(name)
     sql = "SELECT * FROM transactions

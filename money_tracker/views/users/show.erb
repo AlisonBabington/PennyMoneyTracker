@@ -1,10 +1,11 @@
 <h1> Hi <%= @user.owner_first_name %> </h1>
 
-Your current weekly budget is £<%= @user.monthly_budget / 4 %><br>
+Your weekly budget is £<%= @user.monthly_budget / 4 %><br>
+You have £<%= @user.current_budget /4 %> left this week
 <br>
 
 <form method="post" action="/transactions">
-  <input id="user_id" name="user_id" type="hidden" value="<% user1.id %>">
+  <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
   <label for="amount">Amount: £</label>
   <input id="amount-field" type="text" name="amount" />
   <label for="description">Description:</label>

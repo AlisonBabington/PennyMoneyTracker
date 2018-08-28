@@ -34,6 +34,11 @@ attr_accessor :name
     SqlRunner.run(sql,values)
   end
 
+  # transaction_user = User.find_by_id(transaction.user_id)
+  # User.reduce_budget(@transaction, transaction_user)
+  #
+  # <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
+
   def find_transactions()
     sql = "SELECT transactions.* FROM transactions
     INNER JOIN tags

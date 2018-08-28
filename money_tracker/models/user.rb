@@ -11,6 +11,7 @@ class User
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @monthly_budget = details['monthly_budget'].to_f
+    @current_budget = details['monthly_budget'].to_f
   end
 
   def save()
@@ -47,13 +48,8 @@ class User
     @monthly_budget += amount
   end
 
-  def self.reduce_budget(transaction,user)
-    user.update_monthly_budget(-transaction.amount)
-    sql = "UPDATE users
-    SET monthly_budget = $1
-    WHERE id = $2"
-    values = [@monthly_budget, user.id]
-    SqlRunner.run(sql, values)
+  def update_current_budget(amount)
+    @current_budget -= amount
   end
 
   def self.find_by_name(name)
