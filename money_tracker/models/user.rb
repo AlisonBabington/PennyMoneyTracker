@@ -48,8 +48,8 @@ class User
     @monthly_budget += amount
   end
 
-  def update_current_budget(amount)
-    @current_budget -= amount
+  def update_current_budget(transaction)
+    @current_budget -= transaction.amount
   end
 
   def self.find_by_name(name)

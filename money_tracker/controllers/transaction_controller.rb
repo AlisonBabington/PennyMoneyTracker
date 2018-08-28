@@ -23,7 +23,7 @@ post '/transactions' do # create
   transaction = Transaction.new(params)
   transaction.save()
   transaction_user = User.find_by_id(transaction.user_id)
-  User.update_current_budget(transaction, transaction_user)
+  transaction_user.update_current_budget(transaction)
   redirect to "/users"
 end
 
