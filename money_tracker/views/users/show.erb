@@ -12,9 +12,13 @@
 
 
 <p>
-  Quick Transactions:
+  Quick Transaction:
 <form method="post" action="/transactions">
   <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
+  <label>
+    Date:
+  <input type="date" name="time_stamp" value="2018-08-29">
+</label>
   <label>
      Currency:
   <select name = "currency">
