@@ -1,26 +1,57 @@
+
+
 body {
   background-color: #0B2545;
   color: #C3C8C2;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: 'Avro', serif;
   text-decoration: none;
   border: 1rem, solid, #D90368 ;
+}
+
+
+#user_page {
+  background-color: white;
+  width: 60%
+  border: 2rem solid #D90368;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#user_page a {
+  font-family: 'Arvo', serif;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #D90368;
 }
 
 .container {
   display: grid;
   width: 100%;
   grid-template-columns: 20% 40% 30%;
-  grid-template-rows: 10% 10% 70% 10%;
-  grid-template-areas: "head head head"
-                       "nav nav main"
+  grid-template-rows:  25% 70% 10%;
+  grid-template-areas:
+                       "nav nav header"
                        "main main main"
                        "foot foot foot";
 }
 
-.container > header {
+header {
   grid-area: head;
-  background-color: #8DA9C4;
+  background-color: #fff;
+  color:#0B2545;
+  margin-bottom: 15px;
+  padding: 20px;
+  font-family: 'Arvo', serif;
+  margin-right: 70%;
 }
+
+header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+}
+
 
 .container > nav {
   background-color: #0B2545;

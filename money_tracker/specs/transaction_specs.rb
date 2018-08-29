@@ -27,4 +27,5 @@ class TransactionTest < MiniTest::Test
     results = Transaction.filter_by__month("08", "2018")
     assert_equal(@transaction2.description, results)
   end
+
 end

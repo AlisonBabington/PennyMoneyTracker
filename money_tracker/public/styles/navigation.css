@@ -1,21 +1,36 @@
-.nav_menu {
-    width: 300px;
-}
-
-.nav_menu a {
-    background-color: #0B2545;
-    color: white;
-    display: block-inline;
+nav a {
+    background-color: inherit;
+    color: #fff;
+    display: inline-block;
     padding: 12px;
     text-decoration: none;
     outline: 20px, #D90368;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
 }
 
-.nav_menu a:hover {
+nav a:hover {
     background-color: #134074;
 }
 
-.nav_menu a.active {
+nav a:active {
     background-color: #285180;
     color: white;
+}
+
+nav ul {
+  margin: 20px 0 40px 0;
+  padding: 0;
+}
+nav ul li {
+  display: inline;
+}
+
+
+nav a:visited {
+  background-color: inherit;
+  color: #fff;
+}
+nav ul li a:focus {
+  border: 2px solid white;
 }

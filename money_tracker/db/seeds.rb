@@ -24,7 +24,7 @@ tag4 = Tag.new({"name" => "Work"})
 tag4.save()
 
 tag5 = Tag.new({"name" => "Travel"})
-tag4.save()
+tag5.save()
 
 merchant1 = Merchant.new({"name" => "Waitrose"})
 merchant1.save()

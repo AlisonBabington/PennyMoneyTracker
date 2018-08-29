@@ -1,0 +1,30 @@
+tr {
+  height: 60px;
+  text-decoration: none;
+}
+
+tr a:hover {
+  background-color: #D90368;
+  color: #fff;
+  border-radius: 5px;
+}
+
+tr a:focus {
+  background-color: #134074;
+}
+
+th {
+  color: #D90368;
+  font-weight: bold;
+}
+
+table {
+ font-family: 'Raleway', sans-serif;
+ color: #fff;
+}
+
+tr a {
+  color: inherit;
+  display: inline-block;
+  padding: 10px;
+}

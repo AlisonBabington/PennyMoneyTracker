@@ -1,56 +1,59 @@
+<p>
 <h1> Hi <%= @user.owner_first_name %> </h1>
 
-Your weekly budget is £<%= @user.weekly_budget %><br>
-<br>
-<p>
+<h3>Your weekly budget is £<%= @user.weekly_budget %></h3><br>
   <% if @user.budget_is_reaching_limit? == true  %>
-    <h1> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h1>
+    <h2> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h2>
   <% else %>
-    <h1> You have £<%= "#{@user.current_budget}" %> left this week</h1>
+    <h2> You have £<%= "#{@user.current_budget}" %> left this week</h2>
   <% end %>
 </p>
 
+<p>
 <form method="post" action="/transactions">
   <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
   <label>
-    <p> Currency:
+     Currency:
   <select name = "currency">
     <option value = "GBP" > British Pound </option>
     <option value = "USD" > American Dollars </option>
     <option value = "JPY" > Japanese Yen </option>
     <option value = "EUR" > Euro </option>
   </select>
-  </p>
+
 </label>
   <label for="amount">Amount:</label>
   <input id="amount-field" type="text" name="amount" />
   <label for="description">Description:</label>
   <input id="desc-field" type="text" name="description" />
   <label>
-    <p> Merchant:
+     Merchant:
     <select name = "merchant_id">
       <% for merchant in Merchant.all %>
       <option value = <%= merchant.id %> > <%= merchant.name %> </option>
       <% end %>
     </select>
-  </p>
+
   </label>
   <label>
-    <p> Tag:
+    Tag:
     <select name = "tag_id">
       <% for tag in Tag.all %>
       <option value = <%= tag.id %> > <%= tag.name %> </option>
       <% end %>
     </select>
-  </p>
+
   </label>
 
   <input type='submit' value="Add Transaction"/>
 </form>
+</p>
+
 
 <form action= "/users/<%= @user.id %>/new_week" method = "get">
   <input class="button" type = "submit" value = "New Week"
 
+<p>
 <div>
   <form action="/users/<%= @user.id %>/edit" method = "get">
     <input class="button" type="submit" value="Edit User" />
@@ -60,3 +63,4 @@ Your weekly budget is £<%= @user.weekly_budget %><br>
     <input class="button" type="submit" value="Delete User" />
   </form>
 </div>
+</p>

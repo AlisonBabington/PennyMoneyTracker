@@ -2,16 +2,13 @@
 
 <ul>
   <% for merchant in @merchants %>
-  <li id = "one">
-  <p>Name:<a href= "merchants/<%= merchant.id %>" ><%= merchant.name %></a>
-  </p>
-</li>
+    <li><a href = "merchants/<%= merchant.id %>"><%= merchant.name %></a></li>
 <% end %>
 </ul>
 
 <form method="post" action="/merchants">
-    <label for="name">Name:</label>
-    <input id="name-field" type="text" name="name" />
+    <label for="Add Merchant">Name:</label>
+    <input id="name-field" type="text" name="add merchant" />
 
     <input type='submit' value="Add Merchant"/>
 </form>

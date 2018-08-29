@@ -2,11 +2,11 @@
 
 <ul>
   <% for tag in @tags %>
-  <form method="get" action="tags/<%= tag.id %>">
-    <input id= "tag_button" type="submit" value="<%= tag.name %>" name ="<%= tag.name %>" />
-  </form>
+    <li><a href = "tags/<%= tag.id %>"alue="<%= tag.name %>"><%= tag.name %></a></li>
 <% end %>
 </ul>
+
+<li><a href="/users" class="active">Home</a></li>
 
 <form method="post" action="/tags">
     <label for="name">Name:</label>

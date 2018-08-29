@@ -1,6 +1,6 @@
 <h1>Transactions</h1>
 
-<table style="width:100%">
+<table style="width:85%">
   <tr>
     <th>Date</th>
     <th>Amount</th>
@@ -15,42 +15,26 @@
     <td>£ <%= transaction.gbp_amount %></td>
     <td><%= transaction.description %></td>
     <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name %></a></td>
-    <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag_id %></a></td>
-    <td><%= transaction %></td>
+    <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag.name %></a></td>
+    <td><a href="/transactions/<%= transaction.id %>"><%= transaction.id %></a></td>
   </tr>
   <% end %>
 </table>
 
-<ul id = info_table>
-  <% for transaction in @transactions %>
-  <li id = "one">
-  <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
-  Date: <%= transaction.time_stamp %><br>
-  Amount: £ <%= transaction.gbp_amount %><br>
-  Description: <%= transaction.description %></a><br>
-  Merchant:<a href="/merchants/<%= transaction.merchant_id %>">
-  <% each_merchant =  Merchant.find_by_id(transaction.merchant_id) %>
-  <%= each_merchant.name %></a> <br>
-  Tag: <a href="/tags/<%= transaction.tag_id %>">
-  <%= Tag.find_by_id(transaction.tag_id).name %></a></p>
-
-  </li>
-  <% end %>
-</ul>
 <h1>Total: £<%= Transaction.totals %></h1>
 
 <div>
 
   <form action="/transactions/tag" method="get">
     <label>
-      <p> Filter by Tag:
+       Filter by Tag:
       <select name = "tag_id">
         <% for tag in Tag.all %>
         <option value = <%= tag.id %> > <%= tag.name %> </option>
         <% end %>
       </select>
     <input class="button" type="submit" value="See Transactions by Tag" />
-  </p>
+
   </form>
 
   <form action="/transactions/merchant" method="get">
@@ -67,7 +51,7 @@
 
 
   <form action="/transactions/month" method="get">
-    <p> Filter by Month:
+     <label>Filter by Month:
     <select name = "month">
       <option value = "01" > January </option>
       <option value = "02" > February </option>
@@ -87,7 +71,7 @@
       <option value = "2017" > 2017 </option>
     </select>
     <input class="button" type="submit" value="See Transactions by Month" />
-  </p>
+
   </form>
 
 </div>
