@@ -5,9 +5,10 @@
 .nav_menu a {
     background-color: #0B2545;
     color: #8DA9C4;
-    display: block;
+    display: block-inline;
     padding: 12px;
     text-decoration: none;
+    outline: 20px, #D90368;
 }
 
 .nav_menu a:hover {

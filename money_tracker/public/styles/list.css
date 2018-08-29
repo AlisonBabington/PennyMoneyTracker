@@ -1,6 +1,5 @@
-ul {
+/* ul {
   list-style-type: none;
-  background-color: #0B2545;
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 5%;
@@ -16,11 +15,8 @@ form .select:hover {
   background-color: #134074;
 }
 
-<style> {
-    box-sizing: border-box;
-}
 
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-}
+} */

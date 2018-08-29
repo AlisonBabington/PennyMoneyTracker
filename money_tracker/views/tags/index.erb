@@ -2,10 +2,7 @@
 
 <ul>
   <% for tag in @tags %>
-  <li id = "one">
-  <p>Name:<a href= "tags/<%= tag.id %>" ><%= tag.name %></a>
-  </p>
-</li>
+    <button id="tag_button" href= "tags/<%= tag.id %>" type="button"><%= tag.name %></button>
 <% end %>
 </ul>
 

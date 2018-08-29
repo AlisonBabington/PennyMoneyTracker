@@ -20,6 +20,12 @@ tag2.save()
 tag3 = Tag.new({"name" => "Bills"})
 tag3.save()
 
+tag4 = Tag.new({"name" => "Work"})
+tag4.save()
+
+tag5 = Tag.new({"name" => "Travel"})
+tag4.save()
+
 merchant1 = Merchant.new({"name" => "Waitrose"})
 merchant1.save()
 
@@ -31,6 +37,8 @@ merchant3.save()
 
 merchant4 = Merchant.new({"name" => "Ovo"})
 merchant4.save()
+
+merchant5 = Merchant.new({"name" => "ScotRail"})
 
 user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
 "owner_last_name" => "Grace", "weekly_budget" => "350.00"})
