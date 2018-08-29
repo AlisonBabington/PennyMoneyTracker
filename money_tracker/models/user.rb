@@ -70,7 +70,7 @@ class User
   end
 
   def update_current_budget_on_delete(transaction)
-    @current_budget -= transaction.gbp_amount
+    @current_budget += transaction.gbp_amount
     sql =  "UPDATE users
     SET current_budget = $1
     WHERE id = $2"
