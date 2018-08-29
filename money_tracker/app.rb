@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
-require('date')
+require ('time')
+require ('date')
 
 require_relative('controllers/transaction_controller')
 require_relative('controllers/user_controller')

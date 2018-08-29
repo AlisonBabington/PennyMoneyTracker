@@ -1,4 +1,4 @@
-<% transaction_user.update_current_budget_on_delete(transaction) if transaction.in_date? == true %>
+<% transaction_user.update_current_budget_on_delete(transaction)%>
 <% transaction.delete() %>
 
 Your transaction has been deleted

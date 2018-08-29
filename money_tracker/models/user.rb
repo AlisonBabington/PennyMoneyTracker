@@ -1,4 +1,6 @@
 require_relative('../db/sql_runner')
+require('Date')
+require('time')
 
 class User
 
@@ -12,7 +14,7 @@ class User
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @weekly_budget = details['weekly_budget'].to_f
-    @current_budget_date = details['current_budget_date']
+    @current_budget_date = details['current_budget_date'] if details ['current_budget_date']
   end
 
   def save()
@@ -64,12 +66,19 @@ class User
   end
 
   def update_current_budget_on_delete(transaction)
+    return if in_budget_date?(transaction) == false
     @current_budget += transaction.gbp_amount
     sql =  "UPDATE users
     SET current_budget = $1
     WHERE id = $2"
     values = [@current_budget, @id]
     SqlRunner.run(sql, values)
+  end
+
+  def in_budget_date?(transaction)
+    end_budget= @current_budget_date + 604800
+    transaction_date = Time.parse(transaction.time_stamp.to_s)
+    transaction_date.between?(@current_budget_date, end_budget)
   end
 
   def budget_is_reaching_limit?
@@ -112,8 +121,10 @@ class User
     WHERE id = $1"
     values = [id]
     found_user = SqlRunner.run(sql, values)
-    result = User.map_users(found_user)
+    result = User.new(found_user.first)
   end
+
+
 
   def self.map_users(user_info)
    result = user_info.map {|user| User.new(user)}

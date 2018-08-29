@@ -5,6 +5,7 @@ require_relative('../models/merchant')
 require_relative('../models/user')
 
 get '/transactions' do # index
+  @user = user1
   @transactions = Transaction.all()
   erb( :"transactions/index" )
 end

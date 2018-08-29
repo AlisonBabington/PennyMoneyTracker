@@ -14,7 +14,7 @@ class Transaction
     @merchant_id = details['merchant_id'].to_i if details['merchant_id']
     @tag_id = details['tag_id'].to_i if details ['tag_id']
     @user_id = details['user_id'] if details ['user_id']
-    @time_stamp = details['time_stamp']
+    @time_stamp = details['time_stamp'] if details['time_stamp']
     @currency = details['currency']
   end
 
@@ -64,8 +64,8 @@ class Transaction
     sql ="SELECT * FROM merchants
     WHERE id = $1"
     values = [@merchant_id]
-    found_merchant = SqlRunner.run(sql,values)
-    result = Merchant.new(found_merchant[0])
+    found_merchant.first = SqlRunner.run(sql,values)
+    result = Merchant.new(found_merchant)
   end
 
   def tag()
@@ -74,13 +74,6 @@ class Transaction
     values = [@tag_id]
     found_tag = SqlRunner.run(sql,values)
     result = Tag.new(found_tag[0])
-  end
-
-  def in_budget_date?(user_id)
-    User.find_by_id(user_id)
-    end_budget = user.current_budget_date += 7
-    range = (user.current_budget_date..end_budget)
-    range.include?(transaction.time_stamp)
   end
 
   def get_transaction_amount()
@@ -167,7 +160,7 @@ class Transaction
     WHERE id = $1"
     values = [id]
     found_transaction = SqlRunner.run(sql, values)
-    result = Transaction.map_transactions(found_transaction[0])
+    result = Transaction.map_transactions(found_transaction)
   end
 
   def self.map_transactions(transaction_info)

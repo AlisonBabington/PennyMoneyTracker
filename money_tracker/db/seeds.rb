@@ -2,6 +2,8 @@ require_relative('../models/user.rb')
 require_relative('../models/merchant.rb')
 require_relative('../models/transaction.rb')
 require_relative('../models/tag.rb')
+require('time')
+require('date')
 
 require('pry-byebug')
 
@@ -63,6 +65,11 @@ transaction4 = Transaction.new({"gbp_amount" => 12.50, "description" => "Burger"
   "merchant_id" => merchant3.id, "tag_id" => tag2.id, "user_id" => user1.id,
   "time_stamp" => "2018-08-26"})
 transaction4.save()
+
+transaction5 = Transaction.new({"gbp_amount" => 20.50, "description" => "Ticket to Glasgow",
+  "merchant_id" => merchant5.id, "tag_id" => tag4.id, "user_id" => user1.id,
+  "time_stamp" => "2018-08-30"})
+transaction5.save()
 
 tags = Tag.all()
 transactions= Transaction.all()
