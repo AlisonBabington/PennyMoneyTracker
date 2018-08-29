@@ -1,23 +1,25 @@
 
 body {
   background-color: #0B2545;
-  color: #C3C8C2;
-  font-family: 'Avro', serif;
-  text-decoration: none;
-  border: 1rem, solid, #D90368 ;
 }
 
-h1 {
-  font-family: 'Avro', serif;
+main {
+  color: #fff;
+  margin-top: 10rem;
+  font-family: 'Raleway', serif;
 }
-
 
 #user_page {
-  background-color: white;
-  width: 50%
-  border: 2rem solid #D90368;
+  position: relative;
+  margin-left: 15rem;
+  font-family: 'Arvo', serif;
+  height: 40%;
+  background-color: #fff;
+  width: 50%;
+  border: 0.2rem solid #D90368;
   border-radius: 5px;
   text-align: center;
+  color: #D90368;
 }
 
 #user_page a {
@@ -25,18 +27,10 @@ h1 {
   font-size: 2rem;
   text-decoration: none;
   color: #fff;
+  margin-bottom: 10rem;
 }
 
-.container {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 20% 40% 30%;
-  grid-template-rows:  auto auto auto;
-  grid-template-areas:
-                       "head header header"
-                       "main main main"
-                       "foot foot foot";
-}
+
 
 header {
   grid-area: head;
@@ -44,7 +38,7 @@ header {
   color:#0B2545;
   margin-bottom: 15px;
   padding: 20px;
-  font-family: 'Arvo Bold', serif;
+  font-family: 'Arvo', serif;
   width: 20%;
   float:left;
   margin-right: 35%;

@@ -1,10 +1,10 @@
 
-<h1>Welcome!</h1>
+
 
 <div id=user_page>
-
 <ul>
   <% for user in User.all %>
+    <h1>Hello!</h1>
     <li><a href = "users/<%= user.id %>"><%= user.owner_first_name %></a></li>
 <% end %>
 </ul>
