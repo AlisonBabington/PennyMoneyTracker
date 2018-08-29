@@ -7,15 +7,7 @@ class User
   :current_budget, :current_budget_date
 
   def initialize(details)
-
-    if details['current_budget'] == nil
-      @current_budget = details['weekly_budget'].to_f
-    else
-      @current_budget = details['current_budget'].to_f
-    end
-
-    # @current_budget = details['current_budget'] == 0 ? details['weekly_budget'].to_f : details['current_budget'].to_f
-
+    @current_budget = details['weekly_budget'].to_f ||= details['current_budget'].to_f
     @id = details['id'].to_i if details['id']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
@@ -119,8 +111,8 @@ class User
     sql = "SELECT * FROM users
     WHERE id = $1"
     values = [id]
-    results = SqlRunner.run(sql, values)
-    return User.new(results.first)
+    found_user = SqlRunner.run(sql, values)
+    result = User.map_users(found_user)
   end
 
   def self.map_users(user_info)
