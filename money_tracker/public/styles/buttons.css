@@ -1,4 +1,9 @@
-.button tag_button (
-  background color: #D90368;
-
-  )
+#tag_button {
+  background-color: #D90368;
+  color: white;
+  border: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 2rem;
+  display: block-inline;
+}

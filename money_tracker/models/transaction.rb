@@ -62,6 +62,13 @@ class Transaction
     result = SqlRunner.run(sql, values)
   end
 
+  def merchant()
+    sql ="SELECT * FROM merchants
+    WHERE id = $1"
+    values = [@merchant_id]
+    found_merchant = SqlRunner.run(sql,values)
+    result = Transaction.map_transactions(found_merchant)
+
   def get_transaction_amount()
     sql = "SELECT amount FROM transactions
     WHERE id = $1"

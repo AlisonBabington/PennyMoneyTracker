@@ -10,9 +10,10 @@ body {
   display: grid;
   width: 100%;
   grid-template-columns: 20% 40% 30%;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 10% 10% 70% 10%;
   grid-template-areas: "head head head"
-                       "nav main main"
+                       "nav nav main"
+                       "main main main"
                        "foot foot foot";
 }
 
