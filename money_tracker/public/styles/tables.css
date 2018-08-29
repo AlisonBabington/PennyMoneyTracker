@@ -15,7 +15,8 @@ tr a:focus {
 
 th {
   color: #D90368;
-  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+  font-size: 2rem;
 }
 
 table {
