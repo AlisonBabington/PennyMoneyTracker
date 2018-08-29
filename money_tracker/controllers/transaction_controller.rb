@@ -54,7 +54,5 @@ end
 post "/transactions/:id/delete" do #delete
   transaction = Transaction.find_by_id(params[:id])
   transaction_user = User.find_by_id(transaction.user_id)
-  transaction_user.update_current_budget_on_delete(transaction)
-  transaction.delete()
-  redirect to "/transactions"
+  (:"transactions/delete")
 end

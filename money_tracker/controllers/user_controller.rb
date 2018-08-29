@@ -26,7 +26,7 @@ end
 
 get '/users/:id/new_week' do
   @user = User.find_by_id(params[:id])
-  erb(:"users/new_week") 
+  erb(:"users/new_week")
 end
 
 post '/users/:id' do #update

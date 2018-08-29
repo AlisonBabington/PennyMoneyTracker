@@ -78,6 +78,10 @@ class Transaction
     result = Tag.new(found_tag[0])
   end
 
+  def in_budget_date?()
+    @time_stamp 
+  end
+
   def get_transaction_amount()
     sql = "SELECT amount FROM transactions
     WHERE id = $1"
