@@ -3,7 +3,8 @@ require_relative('../db/sql_runner')
 class User
 
   attr_reader :id
-  attr_accessor :owner_first_name, :owner_last_name, :weekly_budget, :current_budget
+  attr_accessor :owner_first_name, :owner_last_name, :weekly_budget,
+  :current_budget, :current_budget_date
 
   def initialize(details)
 
@@ -19,6 +20,7 @@ class User
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @weekly_budget = details['weekly_budget'].to_f
+    @current_budget_date = details['current_budget_date']
   end
 
   def save()
@@ -86,7 +88,17 @@ class User
     @current_budget > 0
   end
 
+  def set_time_stamp
+    @current_budget_date = time.now()
+    sql = "UPDATE users
+    SET current_budget_date = $1
+    WHERE id = $2"
+    values = [@current_budget_date, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def end_of_week
+    set_time_stamp
     @current_budget = @weekly_budget
     sql =  "UPDATE users
     SET current_budget = $1
