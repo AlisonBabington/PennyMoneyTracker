@@ -5,7 +5,6 @@ require_relative('../models/merchant')
 require_relative('../models/user')
 
 get '/transactions' do # index
-  @user = user1
   @transactions = Transaction.all()
   erb( :"transactions/index" )
 end
@@ -49,11 +48,11 @@ end
 post '/transactions/:id' do #update
   transaction = Transaction.new(params)
   transaction.update()
-  redirect tp "/transactions/#{transaction.id}"
+  redirect to "/transactions/#{transaction.id}"
 end
 
 post "/transactions/:id/delete" do #delete
-  transaction = Transaction.find_by_id(params[:id])
-  transaction_user = User.find_by_id(transaction.user_id)
-  (:"transactions/delete")
+  @transaction = Transaction.find_by_id(params[:id])
+  @transaction_user = User.find_by_id(@transaction.user_id)
+  erb(:"transactions/delete")
 end

@@ -14,7 +14,7 @@ class User
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @weekly_budget = details['weekly_budget'].to_f
-    @current_budget_date = details['current_budget_date'] if details ['current_budget_date']
+    @current_budget_date = details['current_budget_date'] || Time.now
   end
 
   def save()
