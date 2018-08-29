@@ -55,10 +55,8 @@ class Transaction
 
   def user()
     sql = "SELECT * FROM USERS
-    INNER JOIN ON users
-    WHERE user.id = transactions.user_id
     WHERE id = $1"
-    values = [@id]
+    values = [@user_id]
     result = SqlRunner.run(sql, values)
   end
 
@@ -78,8 +76,11 @@ class Transaction
     result = Tag.new(found_tag[0])
   end
 
-  def in_budget_date?()
-    @time_stamp 
+  def in_budget_date?(user_id)
+    User.find_by_id(user_id)
+    end_budget = user.current_budget_date += 7
+    range = (user.current_budget_date..end_budget)
+    range.include?(transaction.time_stamp)
   end
 
   def get_transaction_amount()
@@ -166,7 +167,7 @@ class Transaction
     WHERE id = $1"
     values = [id]
     found_transaction = SqlRunner.run(sql, values)
-    return Transaction.new(found_transaction.first)
+    result = Transaction.map_transactions(found_transaction[0])
   end
 
   def self.map_transactions(transaction_info)

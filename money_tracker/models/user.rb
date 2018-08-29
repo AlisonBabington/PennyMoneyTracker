@@ -89,7 +89,7 @@ class User
   end
 
   def set_time_stamp
-    @current_budget_date = time.now()
+    @current_budget_date = Time.now()
     sql = "UPDATE users
     SET current_budget_date = $1
     WHERE id = $2"
