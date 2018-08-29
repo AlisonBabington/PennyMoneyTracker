@@ -2,7 +2,9 @@
 
 <ul>
   <% for tag in @tags %>
-    <button id="tag_button" href= "tags/<%= tag.id %>" type="button"><%= tag.name %></button>
+  <form method="get" action="tags/<%= tag.id %>">
+    <input id= "tag_button" type="submit" value="<%= tag.name %>" name ="<%= tag.name %>" />
+  </form>
 <% end %>
 </ul>
 

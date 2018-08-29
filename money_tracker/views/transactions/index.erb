@@ -1,6 +1,27 @@
 <h1>Transactions</h1>
 
-<ul>
+<table style="width:100%">
+  <tr>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Merchant</th>
+    <th>Tag</th>
+    <th>ID</th>
+  </tr>
+  <tr>
+    <% for transaction in @transactions %>
+    <td> <%= transaction.time_stamp %> </td>
+    <td>£ <%= transaction.gbp_amount %></td>
+    <td><%= transaction.description %></td>
+    <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name %></a></td>
+    <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag_id %></a></td>
+    <td><%= transaction %></td>
+  </tr>
+  <% end %>
+</table>
+
+<ul id = info_table>
   <% for transaction in @transactions %>
   <li id = "one">
   <p>Transaction Number:<a href="/transactions/<%= transaction.id %>"> <%=transaction.id %></a><br>
