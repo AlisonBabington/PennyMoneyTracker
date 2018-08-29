@@ -21,3 +21,12 @@ section ul li a {
   color: inherit;
   font-family: 'Raleway', serif;
 }
+
+input[type = submit] {
+  background-color: #04AF76;
+  font-family: 'Raleway', serif;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 5px;
+
+}

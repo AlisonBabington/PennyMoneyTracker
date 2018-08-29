@@ -10,15 +10,16 @@ main {
 }
 
 #user_page {
-  position: relative;
-  margin-left: 15rem;
+  position: absolute;
+  top: 40%;
+  left: 25%;
   font-family: 'Arvo', serif;
   height: 40%;
   background-color: #fff;
   width: 50%;
   border: 0.2rem solid #D90368;
   border-radius: 5px;
-  text-align: center;
+
   color: #D90368;
 }
 
@@ -28,6 +29,7 @@ main {
   text-decoration: none;
   color: #fff;
   margin-bottom: 10rem;
+  float: center;
 }
 
 
@@ -42,6 +44,8 @@ header {
   width: 20%;
   float:left;
   margin-right: 35%;
+  border: 0.2rem solid #D90368;
+  border-radius: 5px;
 }
 
 header img {

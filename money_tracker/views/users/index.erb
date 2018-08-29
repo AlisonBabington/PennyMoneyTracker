@@ -6,6 +6,8 @@
   <% for user in User.all %>
     <h1>Hello!</h1>
     <li><a href = "users/<%= user.id %>"><%= user.owner_first_name %></a></li>
+    <h2> Welcome back to Penny! Please click through to add new transactions,
+      manage your budget and filter your spending</h2>
 <% end %>
 </ul>
 

@@ -2,14 +2,17 @@
 <h1> Hi <%= @user.owner_first_name %> </h1>
 
 <h3>Your weekly budget is £<%= @user.weekly_budget %></h3><br>
-  <% if @user.budget_is_reaching_limit? == true  %>
-    <h2> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h2>
+  <% if @user.budget_is_reaching_limit? == false  %>
+  <h3> You have £<%= "#{@user.current_budget}" %> left this week</h3>
   <% else %>
-    <h2> You have £<%= "#{@user.current_budget}" %> left this week</h2>
+  <h3> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h3>
   <% end %>
 </p>
 
+
+
 <p>
+  Quick Transactions:
 <form method="post" action="/transactions">
   <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
   <label>
