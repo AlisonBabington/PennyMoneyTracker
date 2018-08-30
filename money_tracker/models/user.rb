@@ -10,7 +10,7 @@ class User
   :current_budget, :current_budget_date
 
   def initialize(details)
-    @current_budget = details['weekly_budget'].to_f ||= details['current_budget'].to_f
+    @current_budget = details['current_budget'].to_f || details['weekly_budget'].to_f 
     @id = details['id'].to_i if details['id']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
@@ -20,20 +20,20 @@ class User
 
   def save()
     sql = "INSERT INTO users
-    (owner_first_name, owner_last_name, weekly_budget)
-    VALUES ($1, $2, $3)
+    (owner_first_name, owner_last_name, weekly_budget, current_budget)
+    VALUES ($1, $2, $3, $)
     RETURNING id "
-    values = [@owner_first_name, @owner_last_name, @weekly_budget]
+    values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
 
   def update()
     sql = "UPDATE users
-    SET (owner_first_name, owner_last_name, weekly_budget) =
-    ($1, $2, $3)
-    WHERE id = $4"
-    values = [@owner_first_name, @owner_last_name, @weekly_budget, @id]
+    SET (owner_first_name, owner_last_name, weekly_budget, current_budget) =
+    ($1, $2, $3, $4)
+    WHERE id = $5"
+    values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -58,12 +58,8 @@ class User
   end
 
   def update_current_budget(transaction)
-    @current_budget -= transaction.gbp_amount
-    sql =  "UPDATE users
-    SET current_budget = $1
-    WHERE id = $2"
-    values = [@current_budget, @id]
-    SqlRunner.run(sql, values)
+    result = @current_budget -= transaction.gbp_amount
+    self.update()
   end
 
   def update_current_budget_on_delete(transaction)
