@@ -21,7 +21,7 @@
   <% end %>
 </table>
 
-<h1>Total: £<%= '%.2f' % Transaction.totals %></h1>
+<h1>Total: £<%= '%.2f' % Transaction.totals if Transaction.totals != nil %></h1>
 
 <div class="grid-container">
 

@@ -12,9 +12,14 @@
   </div>
   </grid>
   <% else %>
-
+  <grid class="grid-container">
+    <div class="grid-child">
     <h3> Careful! You are reaching your limit, you only have £<%= '%.2f' % @user.current_budget %> left this week  </h3>
+  </div>
+  <div class="grid-child">
     <img class = front_page src="/images/piggy-bank-broken.png" alt="broken piggy bank" />
+  </div>
+  </grid>
   <% end %>
 </p>
 

@@ -132,7 +132,9 @@ class Transaction
   def self.totals
    transactions = Transaction.all
    amount = transactions.map { |transaction| transaction.amount }
-   amount.reduce(:+)
+   total = amount.reduce(:+)
+   return if total == nil
+   return total
  end
 
  def self.merchants(merchant_id)
