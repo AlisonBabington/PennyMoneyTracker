@@ -30,6 +30,6 @@ CREATE TABLE transactions (
   merchant_id INT8 REFERENCES merchants(id) ON DELETE CASCADE,
   tag_ID INT8 REFERENCES tags(id) ON DELETE CASCADE,
   user_id INT8 REFERENCES users(id) ON DELETE CASCADE,
-  time_stamp TIMESTAMP DEFAULT NOW(),
+  time_stamp TIMESTAMP DEFAULT now(),
   currency VARCHAR(255)
 );

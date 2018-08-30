@@ -97,7 +97,9 @@ class User
   end
 
   def set_time_stamp
-    @current_budget_date = Time.now()
+    budget_time =  Time.now()
+    budget_date = budget_time.to_s[0,10]
+    @current_budget_date = Time.parse(budget_date)
     sql = "UPDATE users
     SET current_budget_date = $1
     WHERE id = $2"
@@ -110,7 +112,6 @@ class User
     @current_budget = @weekly_budget
     self.update()
     values = [@current_budget, @id]
-    SqlRunner.run(sql, values)
   end
 
   def self.find_by_name(name)
