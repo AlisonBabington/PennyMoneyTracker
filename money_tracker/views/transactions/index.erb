@@ -27,31 +27,30 @@
 
   <form action="/transactions/tag" method="get">
     <label>
-       Filter by Tag:
+        Tag:
       <select name = "tag_id">
         <% for tag in Tag.all %>
         <option value = <%= tag.id %> > <%= tag.name %> </option>
         <% end %>
       </select>
-    <input class="button" type="submit" value="See Transactions by Tag" />
+    <input class="button" type="submit" value="Filter" />
 
   </form>
 
   <form action="/transactions/merchant" method="get">
     <label>
-      <p> Filter by Merchant:
+       Merchant:
       <select name = "merchant_id">
         <% for merchant in Merchant.all %>
         <option value = <%= merchant.id %> > <%= merchant.name %> </option>
         <% end %>
       </select>
-    <input class="button" type="submit" value="See Transactions by Merchant" />
-  </p>
+    <input class="button" type="submit" value="Filter" />
   </form>
 
 
   <form action="/transactions/month" method="get">
-     <label>Filter by Month:
+     <label>Month:
     <select name = "month">
       <option value = "01" > January </option>
       <option value = "02" > February </option>
@@ -70,7 +69,7 @@
       <option value = "2018" > 2018 </option>
       <option value = "2017" > 2017 </option>
     </select>
-    <input class="button" type="submit" value="See Transactions by Month" />
+    <input class="button" type="submit" value="Filter" />
 
   </form>
 
