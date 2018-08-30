@@ -32,5 +32,6 @@ input[type = submit] {
 
 form {
   float:left;
-  padding: 10px;
+  padding: 20px;
+  margin-left: 15px;
 }
