@@ -16,14 +16,14 @@
     <td> <%= transaction.time_stamp[0,10] %> </td>
     <td>£ <%= '%.2f' % transaction.gbp_amount %></td>
     <td><%= transaction.description %></td>
-    <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%=  %></a></td>
+    <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name %></a></td>
     <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag.name %></a></td>
   </tr>
   <% end %>
 </table>
   <p>Total :£<%= '%.2f' % amounts %></p>
 
-<grid>
+
 <form action="/transactions/tag" method="get">
   <label>
      Tag:
@@ -34,6 +34,7 @@
     </select>
   <input class="button" type="submit" value="Filter" />
 </form>
+<br>
 
 <form action="/transactions/merchant" method="get">
   <label>
@@ -45,6 +46,7 @@
     </select>
   <input class="button" type="submit" value="Filter" />
 </form>
+<br>
 
 
 <form action="/transactions/month" method="get">
@@ -69,4 +71,3 @@
   </select>
   <input class="button" type="submit" value="Filter" />
 </form>
-</grid>
