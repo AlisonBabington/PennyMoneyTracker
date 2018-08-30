@@ -1,11 +1,11 @@
 <p>
 <h1> Hi <%= @user.owner_first_name %> </h1>
 
-<h3>Your weekly budget is £<%= @user.weekly_budget %></h3><br>
+<h3>Your weekly budget is £<%= '%.2f' % @user.weekly_budget %></h3><br>
   <% if @user.budget_is_reaching_limit? == false  %>
-  <h3> You have £<%= "#{@user.current_budget}" %> left this week</h3>
+  <h3> You have £<%=  '%.2f' % @user.current_budget %> left this week</h3>
   <% else %>
-  <h3> Careful! You are reaching your limit, you only have £<%= "#{@user.current_budget}" %> left this week  </h3>
+  <h3> Careful! You are reaching your limit, you only have £<%= '%.2f' % @user.current_budget %> left this week  </h3>
   <% end %>
 </p>
 
