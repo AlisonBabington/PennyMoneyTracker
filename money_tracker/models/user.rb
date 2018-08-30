@@ -10,7 +10,12 @@ class User
   :current_budget, :current_budget_date
 
   def initialize(details)
-    @current_budget = details['current_budget'].to_f || details['weekly_budget'].to_f
+    if details['current_budget'] == nil
+      @current_budget = details['weekly_budget'].to_f
+    else
+      @current_budget = details['current_budget'].to_f
+    end
+    
     @id = details['id'].to_i if details['id']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
