@@ -14,7 +14,7 @@
     <% for transaction in @transactions %>
     <% amounts += transaction.gbp_amount %>
     <td> <%= transaction.time_stamp %> </td>
-    <td>£ <%= transaction.gbp_amount %></td>
+    <td>£ <%= '%.2f' % transaction.gbp_amount %></td>
     <td><%= transaction.description %></td>
     <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%=  %></a></td>
     <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag.name %></a></td>
@@ -24,7 +24,7 @@
 </table>
 
 
-£<%= amounts %>
+£<%= '%.2f' % amounts %>
 <form action="/transactions/tag" method="get">
   <label>
     <p> Filter by Tag:

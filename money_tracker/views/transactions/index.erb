@@ -12,7 +12,7 @@
   <tr>
     <% for transaction in @transactions %>
     <td> <%= transaction.time_stamp[0,10] %> </td>
-    <td>£ <%= transaction.gbp_amount %></td>
+    <td>£ <%= '%.2f' % transaction.gbp_amount %></td>
     <td><%= transaction.description %></td>
     <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name%></a></td>
     <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag.name %></a></td>
@@ -21,7 +21,7 @@
   <% end %>
 </table>
 
-<h1>Total: £<%= Transaction.totals %></h1>
+<h1>Total: £<%= '%.2f' % Transaction.totals %></h1>
 
 <div>
 
