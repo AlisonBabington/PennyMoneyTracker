@@ -3,7 +3,6 @@
 <p>Amount: £<%= '%.2f' % @transaction.gbp_amount %></p>
 <p>Description: <%= @transaction.description %></p>
 <p>Merchant: <%= Merchant.find_by_id(@transaction.merchant_id).name %></p>
-<p>Tag: <%= Tag.find_by_id(@transaction.tag_id).name %></p>
 </div>
 
 
