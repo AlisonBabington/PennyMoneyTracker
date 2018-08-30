@@ -29,7 +29,7 @@ tag5 = Tag.new({"name" => "Travel"})
 tag5.save()
 
 tag6 = Tag.new({"name" => "Treat Yo' Self"})
-tag6.save
+tag6.save()
 
 merchant1 = Merchant.new({"name" => "Waitrose"})
 merchant1.save()
@@ -47,7 +47,7 @@ merchant5 = Merchant.new({"name" => "ScotRail"})
 merchant5.save()
 
 user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
-"owner_last_name" => "Grace", "weekly_budget" => "350.00"})
+"owner_last_name" => "Grace", "weekly_budget" => "250.00"})
 user1.save()
 
 transaction1 = Transaction.new({"currency" => "GBP", "gbp_amount" => 24.50, "amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",
@@ -80,5 +80,4 @@ transactions= Transaction.all()
 merchants = Merchant.all()
 users = User.all()
 
-binding.pry
 nil

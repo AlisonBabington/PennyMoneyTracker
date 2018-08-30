@@ -43,10 +43,10 @@ class User
   end
 
   def delete()
-   sql = "DELETE FROM users
-   WHERE id = $1"
-   values = [@id]
-   SqlRunner.run(sql, values)
+    sql = "DELETE FROM users
+    WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
   end
 
   def pretty_name()
@@ -80,20 +80,19 @@ class User
     end
   end
 
-
-  def in_budget_date?(transaction)
-    current_budget = Time.parse(@current_budget_date)
-    end_budget = current_budget + 604800
-    transaction_date = Time.parse(transaction.time_stamp.to_s)
-    transaction_date.between?(current_budget, end_budget)
-  end
-
   def budget_is_reaching_limit?
     @current_budget <= 100
   end
 
   def end_of_week_money?
     @current_budget > 0
+  end
+
+  def in_budget_date?(transaction)
+    current_budget = Time.parse(@current_budget_date)
+    end_budget = current_budget + 604800
+    transaction_date = Time.parse(transaction.time_stamp.to_s)
+    transaction_date.between?(current_budget, end_budget)
   end
 
   def set_time_stamp
@@ -130,11 +129,9 @@ class User
     result = User.new(found_user.first)
   end
 
-
-
   def self.map_users(user_info)
-   result = user_info.map {|user| User.new(user)}
-   return result
+    result = user_info.map {|user| User.new(user)}
+    return result
   end
 
   def self.all()
