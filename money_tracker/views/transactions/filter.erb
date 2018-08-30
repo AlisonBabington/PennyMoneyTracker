@@ -1,5 +1,6 @@
 <h1>Transactions</h1>
 
+
 <table style="width:85%">
   <tr>
     <th>Date</th>
@@ -12,7 +13,7 @@
     <% amounts = 0 %>
     <% for transaction in @transactions %>
     <% amounts += transaction.gbp_amount %>
-    <td> <%= transaction.time_stamp %> </td>
+    <td> <%= transaction.time_stamp[0,10] %> </td>
     <td>£ <%= '%.2f' % transaction.gbp_amount %></td>
     <td><%= transaction.description %></td>
     <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%=  %></a></td>
@@ -20,36 +21,34 @@
   </tr>
   <% end %>
 </table>
+  <p>Total :£<%= '%.2f' % amounts %></p>
 
-
-£<%= '%.2f' % amounts %>
+<grid>
 <form action="/transactions/tag" method="get">
   <label>
-    <p> Filter by Tag:
+     Tag:
     <select name = "tag_id">
       <% for tag in Tag.all %>
       <option value = <%= tag.id %> > <%= tag.name %> </option>
       <% end %>
     </select>
-  <input class="button" type="submit" value="See Transactions by Tag" />
-</p>
+  <input class="button" type="submit" value="Filter" />
 </form>
 
 <form action="/transactions/merchant" method="get">
   <label>
-    <p> Filter by Merchant:
+     Merchant:
     <select name = "merchant_id">
       <% for merchant in Merchant.all %>
       <option value = <%= merchant.id %> > <%= merchant.name %> </option>
       <% end %>
     </select>
-  <input class="button" type="submit" value="See Transactions by Merchant" />
-</p>
+  <input class="button" type="submit" value="Filter" />
 </form>
 
 
 <form action="/transactions/month" method="get">
-  <p> Filter by Month:
+  Month:
   <select name = "month">
     <option value = "01" > January </option>
     <option value = "02" > February </option>
@@ -68,6 +67,6 @@
     <option value = "2018" > 2018 </option>
     <option value = "2017" > 2017 </option>
   </select>
-  <input class="button" type="submit" value="See Transactions by Month" />
-</p>
+  <input class="button" type="submit" value="Filter" />
 </form>
+</grid>

@@ -71,9 +71,11 @@ header img {
 }
 
 img.front_page {
-  width: 15%;
-  height: 15%;
-  padding-bottom: 25px
-  padding-right: 25px
-  float:center
+  width: 20%;
+  height: 20%;
+  float:center;
+}
+
+.grid {
+  display: inline-block;
 }
