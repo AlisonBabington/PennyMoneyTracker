@@ -1,5 +1,5 @@
 <div>
-<p>Date and Time: <%= @transaction.time_stamp %></p>
+<p>Date and Time: <%= @transaction.time_stamp[0,10] %></p>
 <p>Amount: £<%= @transaction.gbp_amount %></p>
 <p>Description: <%= @transaction.description %></p>
 <p>Merchant: <%= Merchant.find_by_id(@transaction.merchant_id).name %></p>

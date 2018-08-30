@@ -11,7 +11,7 @@
   </tr>
   <tr>
     <% for transaction in @transactions %>
-    <td> <%= transaction.time_stamp %> </td>
+    <td> <%= transaction.time_stamp[0,10] %> </td>
     <td>£ <%= transaction.gbp_amount %></td>
     <td><%= transaction.description %></td>
     <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name%></a></td>
