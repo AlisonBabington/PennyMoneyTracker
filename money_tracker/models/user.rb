@@ -10,7 +10,7 @@ class User
   :current_budget, :current_budget_date
 
   def initialize(details)
-    @current_budget = details['current_budget'].to_f || details['weekly_budget'].to_f 
+    @current_budget = details['current_budget'].to_f || details['weekly_budget'].to_f
     @id = details['id'].to_i if details['id']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
@@ -21,7 +21,7 @@ class User
   def save()
     sql = "INSERT INTO users
     (owner_first_name, owner_last_name, weekly_budget, current_budget)
-    VALUES ($1, $2, $3, $)
+    VALUES ($1, $2, $3, $4)
     RETURNING id "
     values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget]
     result = SqlRunner.run(sql, values).first
@@ -102,9 +102,7 @@ class User
   def end_of_week
     set_time_stamp
     @current_budget = @weekly_budget
-    sql =  "UPDATE users
-    SET current_budget = $1
-    WHERE id = $2"
+    self.update()
     values = [@current_budget, @id]
     SqlRunner.run(sql, values)
   end
