@@ -93,7 +93,7 @@ class Transaction
   end
 
   def convert_jpy()
-    @gbp_amount = (@amount * 0.006)
+    @gbp_amount = (@amount * 0.0069)
   end
 
   def convert_currency()
