@@ -36,6 +36,7 @@ post '/transactions' do # create
   transaction_user = User.find_by_id(transaction.user_id)
   transaction_user.update_current_budget(transaction)
   # @user = transaction_user
+  sleep 1.1
   redirect back
 end
 
@@ -55,4 +56,6 @@ post "/transactions/:id/delete" do #delete
   @transaction = Transaction.find_by_id(params[:id])
   @transaction_user = User.find_by_id(@transaction.user_id)
   erb(:"transactions/delete")
+  sleep 1.1
+  redirect to "/users/#{@transaction_user.id}"
 end

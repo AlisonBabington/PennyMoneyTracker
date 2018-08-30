@@ -32,8 +32,6 @@ main {
   float: center;
 }
 
-
-
 header {
   grid-area: head;
   background-color: #fff;
@@ -55,8 +53,6 @@ header img {
   background: #fff;
 }
 
-
-
 .container > main {
   grid-area: main;
   background-color: #134074;
@@ -66,3 +62,4 @@ header img {
 .container > footer {
   grid-area: foot;
   background-color: #8DA9C4;
+}
