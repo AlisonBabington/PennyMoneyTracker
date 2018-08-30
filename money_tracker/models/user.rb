@@ -15,7 +15,7 @@ class User
     else
       @current_budget = details['current_budget'].to_f
     end
-    
+
     @id = details['id'].to_i if details['id']
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
@@ -79,6 +79,7 @@ class User
       return
     end
   end
+
 
   def in_budget_date?(transaction)
     current_budget = Time.parse(@current_budget_date)
