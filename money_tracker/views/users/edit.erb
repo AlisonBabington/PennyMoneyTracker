@@ -2,22 +2,10 @@
 
 <form action="/users/<%= @user.id %>" method= "POST">
   <label for="owner_first_name">First Name:</label>
-  <input type="text" name="owner_first_name"
-  id="user-first-name-field" value="<%= @user.owner_first_name %>"
-  />
-
+  <input type="text" name="owner_first_name" id="user-first-name-field" value="<%= @user.owner_first_name %>"  />
   <label for="user-last-name">Surname:</label>
-  <input type="text" name="owner_last_name"
-  id ="user-surname-field" value="<%= @user.owner_last_name%>"
-  />
-
+  <input type="text" name="owner_last_name" id ="user-surname-field" value="<%= @user.owner_last_name%>"/>
   <label for="budget">Budget:</label>
-  <input
-  type="text"
-  name="weekly_budget"
-  id="weekly_budget"
-  value="<%= @user.weekly_budget %>"
-  />
-
+  <input type="text" name="weekly_budget" id="weekly_budget" value="<%= @user.weekly_budget %>" />
   <input type='submit' value="Edit User">
 </form>
