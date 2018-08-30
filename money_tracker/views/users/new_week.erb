@@ -2,5 +2,6 @@
 
 <h1><%="Well done! You have saved £#{@user.current_budget} extra towards your savings"  if @user.end_of_week_money?  %><h1>
 <% @user.end_of_week %>
-<h1>Time to start this week's budget</h1>
+<h1>Time to start this week's budget</h1><br>
+<li><a class="back_users" href = "/users/<%= @user.id %>">Back to users page </a></li><br><br>
 <img class = front_page src="/images/save-money.png" alt="piggy_bank"/>

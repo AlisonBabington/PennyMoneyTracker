@@ -8,6 +8,6 @@
 
   <form action="/transactions/<%= @transaction.id %>/delete" method="post">
     <input class="button" type="submit" value="Delete Transaction" />
-  </form>
+  </form><br><br><br>
 
-  
+  <li><a class="back_users" href = "/users/<%= @transaction.user_id %>">Back to users page </a></li><br><br>

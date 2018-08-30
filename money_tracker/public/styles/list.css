@@ -6,6 +6,19 @@ ul li  {
   border-radius: 10px;
 }
 
+.back_users {
+  background-color: #D90368;
+  color: white;
+  border: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: inline;
+  float: center;
+  padding: 20px;
+  list-style-type: none;
+}
+
 section ul li {
   background-color: #D90368;
   color: white;
