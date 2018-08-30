@@ -23,8 +23,9 @@
 
 <h1>Total: £<%= '%.2f' % Transaction.totals %></h1>
 
-<div>
+<div class="grid-container">
 
+  <div class="grid-item">
   <form action="/transactions/tag" method="get">
     <label>
         Tag:
@@ -34,9 +35,10 @@
         <% end %>
       </select>
     <input class="button" type="submit" value="Filter" />
-
   </form>
+</div>
 
+  <div class="grid-item">
   <form action="/transactions/merchant" method="get">
     <label>
        Merchant:
@@ -47,8 +49,9 @@
       </select>
     <input class="button" type="submit" value="Filter" />
   </form>
+</div>
 
-
+<div class="grid-item">
   <form action="/transactions/month" method="get">
      <label>Month:
     <select name = "month">
@@ -70,7 +73,7 @@
       <option value = "2017" > 2017 </option>
     </select>
     <input class="button" type="submit" value="Filter" />
-
   </form>
+</div>
 
 </div>

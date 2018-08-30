@@ -63,3 +63,7 @@ header img {
   grid-area: foot;
   background-color: #8DA9C4;
 }
+
+.grid-container {
+  display: inline-block;
+}
