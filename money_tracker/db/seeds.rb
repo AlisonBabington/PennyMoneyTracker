@@ -41,6 +41,7 @@ merchant4 = Merchant.new({"name" => "Ovo"})
 merchant4.save()
 
 merchant5 = Merchant.new({"name" => "ScotRail"})
+merchant5.save()
 
 user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
 "owner_last_name" => "Grace", "weekly_budget" => "350.00"})
@@ -68,7 +69,7 @@ transaction4.save()
 
 transaction5 = Transaction.new({"gbp_amount" => 20.50, "description" => "Ticket to Glasgow",
   "merchant_id" => merchant5.id, "tag_id" => tag4.id, "user_id" => user1.id,
-  "time_stamp" => "2018-08-30"})
+  "time_stamp" => "2018-08-31"})
 transaction5.save()
 
 tags = Tag.all()

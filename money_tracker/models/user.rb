@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require('pry-byebug')
 require('Date')
 require('time')
 
@@ -66,19 +67,23 @@ class User
   end
 
   def update_current_budget_on_delete(transaction)
-    return if in_budget_date?(transaction) == false
-    @current_budget += transaction.gbp_amount
-    sql =  "UPDATE users
-    SET current_budget = $1
-    WHERE id = $2"
-    values = [@current_budget, @id]
-    SqlRunner.run(sql, values)
+    if in_budget_date?(transaction) == true
+      @current_budget += transaction.gbp_amount
+      sql =  "UPDATE users
+      SET current_budget = $1
+      WHERE id = $2"
+      values = [@current_budget, @id]
+      SqlRunner.run(sql, values)
+    else
+      return
+    end
   end
 
   def in_budget_date?(transaction)
-    end_budget= @current_budget_date + 604800
+    current_budget = Time.parse(@current_budget_date)
+    end_budget = current_budget + 604800
     transaction_date = Time.parse(transaction.time_stamp.to_s)
-    transaction_date.between?(@current_budget_date, end_budget)
+    transaction_date.between?(current_budget, end_budget)
   end
 
   def budget_is_reaching_limit?
