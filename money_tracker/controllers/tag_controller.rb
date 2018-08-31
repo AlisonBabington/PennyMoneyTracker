@@ -15,7 +15,7 @@ end
 post '/tags' do # create
   @tag = Tag.new(params)
   @tag.save()
-  redirect to '/tags'
+  redirect back
 end
 
 get '/tags/:id/edit' do #edit

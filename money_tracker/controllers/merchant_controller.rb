@@ -14,7 +14,7 @@ end
 post '/merchants' do # create
   @merchant = Merchant.new(params)
   @merchant.save()
-  redirect to '/merchants'
+  redirect back
 end
 
 get '/merchants/:id/edit' do #edit
