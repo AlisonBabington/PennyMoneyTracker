@@ -3,7 +3,7 @@
 
 <h2>Your weekly budget is £<%= '%.2f' % @user.weekly_budget %></h2><br>
   <% if @user.budget_is_reaching_limit? == false  %>
-    <div class="flex-box">
+    <div class="flex-box" id="front-page">
       <div class="flex-child">
     <h2> You have £<%= '%.2f' % @user.current_budget %> left this week</h2>
   </div>
@@ -12,7 +12,7 @@
   </div>
 </div>
   <% else %>
-  <div class="flex-box">
+  <div class="flex-box" id = "front-page">
     <div class="flex-child">
     <h2 id = "careful"> Careful! </h2>
       <h3> You are reaching your limit, you only have £<%= '%.2f' % @user.current_budget %> left this week  </h3>
@@ -26,12 +26,11 @@
 
 <div class = "flex-box" id="input-form">
   Quick Transaction:
-  <div class = "flex-child"
+  <div class = "flex-child">
 <form method="post" action="/transactions">
   <input id="user_id" name="user_id" type="hidden" value= "<%= @user.id %>">
   <label>
     Date:
-
   <input type="date" name="time_stamp" value= <%= Time.now() + 3000 %> min="2016-01-02" max= <%= Time.now() %>>
 </label>
   <label>

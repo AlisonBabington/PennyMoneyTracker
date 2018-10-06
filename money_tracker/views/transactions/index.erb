@@ -1,31 +1,8 @@
 <h1>Transactions</h1>
 
-<table style="width:85%">
-  <tr>
-    <th>Date</th>
-    <th>Amount</th>
-    <th>Description</th>
-    <th>Merchant</th>
-    <th>Tag</th>
-    <th></th>
-  </tr>
-  <tr>
-    <% for transaction in @transactions %>
-    <td> <%= transaction.time_stamp[0,10] %> </td>
-    <td>£ <%= '%.2f' % transaction.gbp_amount %></td>
-    <td><%= transaction.description %></td>
-    <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name%></a></td>
-    <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag.name %></a></td>
-    <td><a href="/transactions/<%= transaction.id %>"> See Transaction </a></td>
-  </tr>
-  <% end %>
-</table>
+<div class="flex-box">
 
-<h1>Total: £<%= '%.2f' % Transaction.totals if Transaction.totals != nil %></h1>
-
-<div class="grid-container">
-
-  <div class="grid-item">
+  <div class="flex-child">
   <form action="/transactions/tag" method="get">
     <label>
         Tag:
@@ -77,3 +54,27 @@
 </div>
 
 </div>
+
+
+<table style="width:85%">
+  <tr>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Merchant</th>
+    <th>Tag</th>
+    <th></th>
+  </tr>
+  <tr>
+    <% for transaction in @transactions %>
+    <td> <%= transaction.time_stamp[0,10] %> </td>
+    <td>£ <%= '%.2f' % transaction.gbp_amount %></td>
+    <td><%= transaction.description %></td>
+    <td><a href= "/merchants/<%= transaction.merchant_id %>" ><%= transaction.merchant.name%></a></td>
+    <td><a href="/tags/<%= transaction.tag_id %>"><%= transaction.tag.name %></a></td>
+    <td><a href="/transactions/<%= transaction.id %>"> See Transaction </a></td>
+  </tr>
+  <% end %>
+</table>
+
+<h1>Total: £<%= '%.2f' % Transaction.totals if Transaction.totals != nil %></h1>

@@ -76,6 +76,10 @@ header img {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  /* height: 310px; */
+}
+
+#front-page {
   height: 310px;
 }
 
