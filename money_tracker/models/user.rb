@@ -1,5 +1,4 @@
 require_relative('../db/sql_runner')
-require('pry-byebug')
 require('Date')
 require('time')
 
@@ -20,7 +19,8 @@ class User
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @weekly_budget = details['weekly_budget'].to_f
-    @current_budget_date = details['current_budget_date'] || Time.now
+    # set budget date to midnight when program starts if not set
+    @current_budget_date = details['current_budget_date'] || Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0, 0)
   end
 
   def save()

@@ -14,7 +14,7 @@ class Transaction
     @merchant_id = details['merchant_id'].to_i if details['merchant_id']
     @tag_id = details['tag_id'].to_i if details ['tag_id']
     @user_id = details['user_id'] if details ['user_id']
-    @time_stamp = details['time_stamp'] || Time.now
+    @time_stamp = details['time_stamp'] ||  Time.now()
     @currency = details['currency']
   end
 

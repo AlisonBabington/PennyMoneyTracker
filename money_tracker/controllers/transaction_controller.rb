@@ -35,8 +35,6 @@ post '/transactions' do # create
   transaction.save()
   transaction_user = User.find_by_id(transaction.user_id)
   transaction_user.update_current_budget(transaction)
-  # @user = transaction_user
-  sleep 1.1
   redirect back
 end
 

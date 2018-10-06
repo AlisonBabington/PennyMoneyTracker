@@ -5,7 +5,6 @@ require_relative('../models/tag.rb')
 require('time')
 require('date')
 
-require('pry-byebug')
 
 
 Tag.delete_all()
