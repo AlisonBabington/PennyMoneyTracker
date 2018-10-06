@@ -3,23 +3,23 @@
 
 <h2>Your weekly budget is £<%= '%.2f' % @user.weekly_budget %></h2><br>
   <% if @user.budget_is_reaching_limit? == false  %>
-    <grid class="grid-container">
-      <div class="grid-child">
+    <div class="flex-box">
+      <div class="flex-child">
     <h2> You have £<%= '%.2f' % @user.current_budget %> left this week</h2>
   </div>
-  <div class="grid-child">
+  <div class="flex-child" id="balance-status">
     <img class = front_page src="/images/save-money.png" alt="piggy_bank"/>
   </div>
-  </grid>
+</div>
   <% else %>
-  <grid class="grid-container">
-    <div class="grid-child">
+  <div class="flex-box">
+    <div class="flex-child">
     <h3> Careful! You are reaching your limit, you only have £<%= '%.2f' % @user.current_budget %> left this week  </h3>
   </div>
-  <div class="grid-child">
+  <div class="flex-child">
     <img class = front_page src="/images/piggy-bank-broken.png" alt="broken piggy bank" />
   </div>
-  </grid>
+</div>
   <% end %>
 </p>
 

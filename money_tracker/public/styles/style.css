@@ -66,14 +66,21 @@ header img {
   background-color: #8DA9C4;
 }
 
-.grid-container {
-  display: inline-block;
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 310px;
 }
 
+/* .flex-child {
+  direction:
+} */
+
 img.front_page {
-  width: 20%;
-  height: 20%;
-  float:center;
+  width: 300px;
+  height: 300px;
 }
 
 .grid {
