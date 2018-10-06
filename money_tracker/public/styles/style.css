@@ -48,6 +48,11 @@ header {
   border-radius: 5px;
 }
 
+h2#careful {
+  color: #D90368;
+  padding-top: 15%;
+}
+
 header img {
   float: left;
   width: 100px;
@@ -74,9 +79,11 @@ header img {
   height: 310px;
 }
 
-/* .flex-child {
-  direction:
-} */
+#input-form {
+  justify-content: flex-start;
+}
+
+
 
 img.front_page {
   width: 300px;
