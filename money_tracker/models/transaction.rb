@@ -93,18 +93,18 @@ class Transaction
   end
 
   def convert_jpy()
-    @gbp_amount = (@amount * 0.0069)
+    @gbp_amount = (@amount * 0.0068)
   end
 
   def convert_currency()
     case currency
-    when"GBP"
+    when "GBP"
       return @gbp_amount = @amount
     when "USD"
       return convert_usd
     when "EUR"
       return convert_eur
-    when @currency == "JPY"
+    when "JPY"
       return convert_jpy
     end
   end
