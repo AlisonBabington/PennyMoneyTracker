@@ -97,18 +97,15 @@ class Transaction
   end
 
   def convert_currency()
-    if @currency == "GBP"
-      @gbp_amount = @amount
-      return
-    elsif @currency == "USD"
-      convert_usd
-      return
-    elsif @currency == "EUR"
-      convert_eur
-      return
-    elsif @currency == "JPY"
-      convert_jpy
-      return
+    case currency
+    when"GBP"
+      return @gbp_amount = @amount
+    when "USD"
+      return convert_usd
+    when "EUR"
+      return convert_eur
+    when @currency == "JPY"
+      return convert_jpy
     end
   end
 

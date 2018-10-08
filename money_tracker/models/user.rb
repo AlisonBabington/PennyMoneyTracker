@@ -1,7 +1,6 @@
 require_relative('../db/sql_runner')
 require('Date')
 require('time')
-require('pry-byebug')
 
 class User
 
