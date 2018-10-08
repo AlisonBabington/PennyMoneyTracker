@@ -45,8 +45,9 @@ merchant4.save()
 merchant5 = Merchant.new({"name" => "ScotRail"})
 merchant5.save()
 
+budget_time = Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0, 0, 0)
 user1 = User.new({"name" => "Current", "owner_first_name" => "Lucy",
-"owner_last_name" => "Grace", "weekly_budget" => "250.00"})
+"owner_last_name" => "Grace", "weekly_budget" => "250.00", "current_budget_date" => budget_time.to_s})
 user1.save()
 
 transaction1 = Transaction.new({"currency" => "GBP", "gbp_amount" => 24.50, "amount" => 24.50, "description" => "2 x Cinema Tickets and Popcorn",

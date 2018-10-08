@@ -19,7 +19,7 @@ CREATE TABLE users (
   owner_last_name VARCHAR(255),
   weekly_budget DECIMAL(12,2),
   current_budget DECIMAL(12,2),
-  current_budget_date TIMESTAMP DEFAULT NOW()
+  current_budget_date TIMESTAMP()
 );
 
 CREATE TABLE transactions (

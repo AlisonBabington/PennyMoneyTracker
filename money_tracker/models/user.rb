@@ -1,6 +1,7 @@
 require_relative('../db/sql_runner')
 require('Date')
 require('time')
+require('pry-byebug')
 
 class User
 
@@ -19,26 +20,25 @@ class User
     @owner_first_name = details['owner_first_name']
     @owner_last_name = details['owner_last_name']
     @weekly_budget = details['weekly_budget'].to_f
-    # set budget date to midnight when program starts if not set
-    @current_budget_date = details['current_budget_date'] || Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0, 0)
+    @current_budget_date = details['current_budget_date']
   end
 
   def save()
     sql = "INSERT INTO users
-    (owner_first_name, owner_last_name, weekly_budget, current_budget)
-    VALUES ($1, $2, $3, $4)
+    (owner_first_name, owner_last_name, weekly_budget, current_budget, current_budget_date)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING id "
-    values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget]
+    values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget, @current_budget_date]
     result = SqlRunner.run(sql, values).first
     @id = result['id'].to_i
   end
 
   def update()
     sql = "UPDATE users
-    SET (owner_first_name, owner_last_name, weekly_budget, current_budget) =
-    ($1, $2, $3, $4)
-    WHERE id = $5"
-    values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget, @id]
+    SET (owner_first_name, owner_last_name, weekly_budget, current_budget, current_budget_date) =
+    ($1, $2, $3, $4, $5)
+    WHERE id = $6"
+    values = [@owner_first_name, @owner_last_name, @weekly_budget, @current_budget, @current_budget_date, @id]
     SqlRunner.run(sql, values)
   end
 
